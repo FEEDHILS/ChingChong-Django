@@ -1,0 +1,68 @@
+@import "main.css";
+
+/* Айди */
+
+/* Классы */
+/* .foodinfo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+} */
+
+/* .foodinfo {
+
+    flex-wrap: wrap;
+} */
+
+.row {
+    margin: 0px !important;
+}
+
+.carousel-item img {
+    height: 65vh;
+}
+
+.foodgroup {
+    flex: 1 0 0%;
+    width: 30vw;  
+    padding: 5px;
+    flex-wrap: wrap;
+    
+}
+
+.foodimg {
+    width: 25vw;
+}
+/* 
+.navbutton {
+    height: 12vh;
+    min-height: 100px;
+    max-height: 120px;
+    width: 23vw;
+    min-width: 120px;
+    font-size: 2vw;
+    background-color: #151515;
+    color: white;
+    border: 0px;
+    margin: .1vw;
+} */
+
+.foodgroup:hover {
+    color: white;
+    animation: ButtonHover 0.4s 1 forwards;
+    
+}
+
+/* @media (orientation: portrait) {
+
+    .col {
+        width: 36vh;
+        max-width: 95vw;
+        font-size: 2vh;
+    }
+    .foodimg {
+        width: 36vh;
+        max-width: 95vw;
+    }
+
+} */

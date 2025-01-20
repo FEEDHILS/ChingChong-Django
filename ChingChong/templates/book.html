@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книга жалоб и отзывов</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <header>
+        <h1>Книга жалоб и отзывов</h1>
+        <p>Оставьте ваш отзыв или жалобу о посещении нашего ресторана. Мы ценим ваше мнение!</p>
+    </header>
+
+    <section class="review-form">
+        <h2>Оставьте отзыв</h2>
+        <form action="/submit-review" method="post">
+            <!-- Когда форма будет отправлена, данные будут направлены на URL /submit-review-->
+            <div  class="row">
+                
+                <label for="name">Ваше имя:</label>
+                <input type="text" id="name" name="name" required>
+            
+
+            
+                <label for="email">Ваш email (необязательно):</label>
+                <input type="email" id="email" name="email">
+            
+
+            
+                <label for="rating">Оценка:</label>
+                <select id="rating" name="rating">
+                    <option value="1">1 звезда</option>
+                    <option value="2">2 звезды</option>
+                    <option value="3">3 звезды</option>
+                    <option value="4">4 звезды</option>
+                    <option value="5">5 звезд</option>
+                </select>
+                
+
+                <label for="review">Ваш отзыв:</label>
+                <textarea id="review" name="review" rows="4" required></textarea>
+
+                <label>
+                    <input type="checkbox" name="agree" required> Согласен с обработкой персональных данных
+                </label>
+
+                <button type="submit">Отправить отзыв</button>
+        </form>
+    </section>
+
+    <section class="reviews">
+        <h2>Отзывы наших гостей</h2>
+        <div class="review">
+            <p><strong>Иван Иванов</strong> - 5 звезд</p>
+            <p>Отличный ресторан, очень понравилась еда и обслуживание!</p>
+        </div>
+        <div class="review">
+            <p><strong>Мария Смирнова</strong> - 3 звезды</p>
+            <p>Еда была вкусной, но пришлось долго ждать.</p>
+        </div>
+        <!-- Здесь будут отображаться другие отзывы -->
+    </section>
+
+    <footer>
+        <h3>Контактная информация</h3>
+        <p>Адреса ресторанов: <a href="#">Список ресторанов</a></p>
+        <p>Телефон горячей линии: <a href="">+1 (234) 567-89</a></p>
+        <!--"tel:+123456789" например--> 
+        <p>Email: <a href="">support@restaurant.com</a></p>
+    </footer>
+</body>
+</html>

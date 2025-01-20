@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="css/PersonalSpace.css">
+</head>
+<body>
+
+    <main class="Project">
+        <div class="Profile_header">
+            <div class=" w-full flex-1 mx-auto sm:px-4 lg:max-w-screen-lg xl:max-w-screen-xl Profile_container grid-container">
+                <div class="Profile_avatarContainer grid-item">
+                    <div class="relative">
+                        <div class="Profile_avatar Avatar_color Avatar_position">
+                            <!-- Для себя: -->
+                            <!-- Описание. Атрибут aria-hidden может использоваться для скрытия неинтерактивного контента от API доступности.
+                            Добавление aria-hidden="true" к элементу удаляет этот элемент и всех его дочерних элементов из дерева доступности -->
+                            <!-- фокусабельные элементы в HTML – это интерактивные компоненты, с которыми пользователь имеет возможность взаимодействовать.
+                            Тег <svg> используется для определения векторного изображения, которое можно бесконечно масштабировать без потери качества. -->
+                            <img id="Without_icon" src="img/ИконкаАватара.png">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="Profile_headerContent grid-item">
+                    <h1 class="Profile_username">Ник</h1>
+                    <div class="Profile_stats">
+                        <p class="Typography_stats Profile_stat">
+                            <b class="ml-2 mr-2 mt-0 mb-0">кол-во
+                                <span>Постов</span>
+                            </b>
+                        </p>
+                        <p class="Typography_stats Profile_stat">
+                            <b class="ml-2 mr-2 mt-0 mb-0">кол-во
+                                <span>Лайков</span>
+                            </b>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

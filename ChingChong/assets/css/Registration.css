@@ -1,0 +1,171 @@
+/* body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url("../img/Background.png");
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+}
+
+.registration-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.registration-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.form-footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* Адаптивность */
+/* @media (max-width: 768px) {
+    .registration-form {
+        padding: 15px;
+    }
+    .form-group input {
+        padding: 8px;
+    }
+    .btn {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 468px) {
+
+    .registration-form h2 {
+        font-size: 20px;
+    }
+    .form-group label {
+        font-size: 14px;
+    }
+    .form-group input {
+        padding: 6px;
+        font-size: 14px;
+    }
+    .btn {
+        font-size: 12px;
+        padding: 6px;
+    }
+    .form-footer {
+        font-size: 14px;
+    }
+} */
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("../img/Background.png");
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+}
+
+.row {
+    margin-bottom: 10px;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.FormContainer {
+    
+    width: 100%;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 600px;
+    text-align: center;
+}
+
+.Mybtn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.Mybtn:hover {
+    background-color: #0056b3;
+}
+
+.form-footer {
+    margin-top: 10px;
+}
+
+.form-footer a {
+    text-decoration: none;
+}
+
+.Myp {
+    margin: 0;
+}
+
+.WhyPadding {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.ForLabel {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.FontLabel {
+    font-weight: 600;
+}
+
+@media (max-width: 599.2px) {
+    .col-6 {
+        width: 100% !important;
+    }
+}
