@@ -1,10 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 from .models import User
 from django.contrib.auth.forms import *
 from django.contrib.auth import login, logout, get_user_model
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
+
+# AUTHENTIFICATION AND REGISTRATION...
 
 def login_user(req):
     AuthForm = AuthenticationForm()
@@ -17,6 +19,11 @@ def login_user(req):
         
     return render(req, 'authorization.html', {'form': AuthForm})
 
+def logout_user(req):
+    if req.user.is_authenticated:
+        logout(req)
+    
+    return redirect('index')
 
 def register(req):
     RegisterForm = UserRegisterForm()
@@ -41,11 +48,8 @@ def register(req):
 
     return render(req, 'registration.html', {'form': RegisterForm})
 
-def logout_user(req):
-    if req.user.is_authenticated:
-        logout(req)
-    
-    return redirect('index')
+
+# PASSWORD RESTORATION STUFF...
 
 # Страничка с формой ввода Email, для восст. пароля.
 def forgot(req):
@@ -77,3 +81,10 @@ def reset_confirmed(req, uidb64, token):
     else:
         return redirect('index')
 
+
+# PROFILE STUFF...
+
+def profile(req, name):
+    user = get_object_or_404(get_user_model(), username=name)
+    print(user.gender)
+    return render(req, "personalSpace.html", {'current': user})
