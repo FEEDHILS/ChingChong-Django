@@ -1,10 +1,4 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
     background-image: url("../img/Background.png");
     overflow-wrap: break-word;
@@ -12,6 +6,8 @@ body {
 }
 
 .subscription-form {
+    margin-top: 15px;
+    justify-self: center;
     background: #ffffff;
     padding: 20px;
     border-radius: 8px;
@@ -51,7 +47,8 @@ body {
     outline: none;
 }
 
-.btn {
+.Mybtn {
+    margin-top: 10px;
     width: 100%;
     padding: 10px;
     background-color: #007bff;
@@ -91,4 +88,88 @@ body {
         font-size: 14px;
         padding: 8px;
     }
+}
+
+
+
+
+
+
+
+
+@media (max-width: 600px) {
+    .BeforeKnopka {
+        display: none !important;
+    }
+
+    .Knopka {
+        display: flex !important;
+        /* Вот это чтобы справа было */
+        justify-content: end;
+    }
+
+    .btn {
+        text-align: end !important;
+        padding: 0 !important;
+    }
+
+    .container-fluid {
+        padding: 0 !important;
+    }
+}
+
+.MenuTable a{
+    color: white;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+    background-color: black;
+}
+
+.GoToMain {
+    inline-size: 6vh;
+    border: 1px solid;
+    border-color: black;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.GoToMenu {
+    color: black;
+    text-decoration: none;
+}
+
+.GoToTeam {
+    color: black;
+    text-decoration: none;
+}
+
+.GoToPosts {
+    color: black;
+    text-decoration: none;
+}
+
+.Knopka {
+    display: none;
+}
+
+.MenuKnopka {
+    inline-size: 45%;
+}
+
+header {
+    position: sticky;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(32, 32, 32);
+}
+
+hr {
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
 }

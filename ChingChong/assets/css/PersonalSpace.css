@@ -1,145 +1,149 @@
+h4 {
+    margin-bottom: 0.7rem !important;
+}
 
-.Profile_header {
+body {
+    background-image: url("../img/Background.png");
+    color: white !important;
+}
+
+hr {
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
+}
+
+header {
+    position: sticky;
     width: 100%;
-}
-
-.Profile_container {
-    margin: 24px auto 24px auto;
+    top: 0;
+    z-index: 1000;
     display: flex;
-}
-
-.grid-container.grid-item {
-    padding: 12x;
-}
-
-.grid-item {
-    margin: 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    flex-grow: 0;
-    max-width: 100%;
-    flex-basis: 100%;
-}
-
-@media screen and (min-width: 600px) {
-    .grid-item and .Profile_avatarContainer{
-        flex-grow: 0;
-        flex-basis: 30%;
-        max-width: 30%;
-    }
-}
-
-@media screen and (min-width: 800px) {
-    .grid-item and .Profile_avatarContainer{
-        flex-grow: 0;
-        flex-basis: 30%;
-        max-width: 30%;
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .grid-item and .Profile_avatarContainer{
-        flex-grow: 0;
-        flex-basis: 30%;
-        max-width: 30%;
-    }
-}
-
-.Profile_avatarContainer {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(32, 32, 32);
 }
 
-.Profile_headerContent {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
+@media (max-width: 600px) {
+    .BeforeKnopka {
+        display: none !important;
+    }
 
-@media screen and (min-width: 1024px) {
-    .grid-item and .Profile_headerContent{
+    .Knopka {
+        display: flex !important;
+
     }
 }
 
-@media screen and (min-width: 800px) {
-    .grid-item and .Profile_headerContent{
-        flex-grow: 0;
-        max-width: 70%;
-        flex-basis: 70%;
-    }
-}
-
-@media screen and (min-width: 600px) {
-    .grid-item and .Profile_headerContent{
-    }
-}
-
-@media (min-width: 640px) {
-    .sm\:px-4 {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .lg\:max-w-screen-lg {
-        max-width: 1024px;
-    }
-}
-
-@media (max-width: 799.5px) {
-    .Profile_headerContent {
-        align-items: center;
-    }
-}
-
-.relative {
-    position: relative;
-}
-
-.Avatar_position {
-    position: relative;
-    display: flex;
-    user-select: none;
-    overflow: hidden;
+#Iconka {
     border-radius: 50%;
 }
 
-.Profile_avatar {
-    width: 200px;
-    height: 200px;
-    border: 2px solid;
+.Knopka {
+    display: none;
 }
 
-@media (max-width: 799.5px) {
-    div.Profile_avatar{
-        width: 156px;
-        height: 156px;
+.MenuKnopka {
+    inline-size: 45%;
+}
+
+.MenuTable a{
+    color: white;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+    background-color: black;
+}
+
+.FirstToSee {
+    margin-top: 10px;
+    margin-bottom: 4vh;
+}
+
+@media (max-width: 768px){
+    .PersonIcon{
+        width: 100% !important;
+    }
+
+    .PersonInfo1 {
+        width: 100% !important;
+    }
+
+    .PersonInfo2 {
+        width: 100% !important;
+    }
+
+    .AboutPerson {
+        width: 100% !important;
     }
 }
 
-.Profile_stats {
-    display: flex;
-    align-items: center;
-    margin-top: 4px;
-    margin-bottom: 8px;
-    margin-left: -12px;
+.PersonIcon {
+    margin-bottom: 20px;
 }
 
-@media (max-width: 799.5px) {
-    .Profile_stats{
-        align-items: flex-start;
-        margin-top: 20px;
-        margin-left: 0;
-    }
+.PersonInfo1 {
+    margin-bottom: 10px;
+    background-color: rgb(35, 35, 35);
+    border-radius: 5%;
 }
 
-.Profile_stat {
-    display: flex;
-    align-items: center;
-    margin: 6px 8px;
+.Second{
+    justify-content: space-around;
+}
+
+.PersonInfo2 {
+    margin-bottom: 20px;
+    background-color: rgb(35, 35, 35);
+    border-radius: 5%;
+}
+
+.Nickname {
+    margin-bottom: 25px;
+}
+
+.AboutPerson {
+    color: black;
+    border-radius: 5%;
+    background-color: rgb(157, 154, 154);
+    min-height: 12vh;
+    margin-bottom: 15px;
+}
+
+.City {
+    margin-bottom: 20px !important;
+}
+
+.footer {
+    background-color: rgb(102, 100, 100);
+    text-align: end;
+    color: rgb(216, 212, 212);
+}
+
+.GoToMain {
+    inline-size: 6vh;
+    border: 1px solid;
+    border-color: black;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.GoToMenu {
+    color: black;
+    text-decoration: none;
+}
+
+.GoToTeam {
+    color: black;
+    text-decoration: none;
+}
+
+.GoToPosts {
+    color: black;
+    text-decoration: none;
+}
+
+.Acception {
+    color: rgb(216, 212, 212);
+    text-decoration: none;
 }

@@ -15,13 +15,24 @@ def login_user(req):
             login(req, user)
             return redirect('index')
         
-    return render(req, 'login.html', {'form': AuthForm})
+    return render(req, 'authorization.html', {'form': AuthForm})
 
 
 def register(req):
     RegisterForm = UserRegisterForm()
     if req.method == 'POST':
-        RegisterForm = UserRegisterForm(data=req.POST)
+        genderM = req.POST.get('genderM')
+        genderF = req.POST.get('genderF')
+        gender = 'D'
+        if genderM == 'on':
+            gender = 'M'
+        elif genderF == 'on':
+            gender = 'F'
+
+        data = req.POST.copy()
+        data['gender'] = gender  
+
+        RegisterForm = UserRegisterForm(data=data)
         if RegisterForm.is_valid():
             user = RegisterForm.save()
             login(req, user)
@@ -59,7 +70,7 @@ def reset_confirmed(req, uidb64, token):
             PassForm = SetPasswordForm(user, req.POST)
             if PassForm.is_valid():
                 PassForm.save()
-                print("Password has Changed")
+                # print("Password has Changed")
                 return redirect('index')
 
         return render(req, "password_reset.html", { "form": PassForm }) 

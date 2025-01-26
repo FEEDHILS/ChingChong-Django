@@ -7,4 +7,5 @@ urlpatterns = [
     path('menu', TemplateView.as_view(template_name="menu.html"), name="menu"),
     path('contacts', TemplateView.as_view(template_name="contacts.html"), name="contacts"),
     path('subs', TemplateView.as_view(), name="subscription"),
+    path('api/search_city', views.search_city),
 ]

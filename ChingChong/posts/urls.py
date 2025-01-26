@@ -3,5 +3,6 @@ from . import views
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('', views.postCreate, name='create_post'),
+    path('create', views.postCreate, name='create_post'),
+    path('all', views.postCreate, name="all_posts"),
 ]

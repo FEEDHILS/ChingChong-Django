@@ -2,6 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import User
+from main.models import Cities
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(max_length=60, required=True,)
@@ -9,8 +10,8 @@ class UserRegisterForm(UserCreationForm):
     birthday = forms.DateField( widget=forms.DateInput(format="DD.MM.YYYY") )
     number = forms.CharField(max_length=11, required=False)
     city = forms.CharField(max_length=50)
-    food = forms.CharField(max_length=50)
-    gender = forms.CharField(max_length=10)
+    food = forms.CharField(max_length=50, required=False)
+    gender = forms.CharField(max_length=10, initial='D')
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -18,9 +19,14 @@ class UserRegisterForm(UserCreationForm):
             raise ValidationError('A user with that email already exists.')
         return email
     
-    def clean_gender(self):
-        return 'D'
+    def clean_city(self):
+        city = self.cleaned_data.get('city')
+        cityObject = Cities.objects.filter(adress=city)
+        if cityObject:
+            return cityObject[0]
         
+        raise ValidationError('Please use a correct address')
+
     def clean_number(self):
         text = self.cleaned_data.get('number')
         if len(text) == 0:
@@ -38,7 +44,6 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ("username", "email", "password1", "password2", "number", "gender", "birthday", "food", "city",)
-
 
 # class UserEditForm(forms.ModelForm):
 #     username = forms.CharField(max_length=150, required=True,)

@@ -1,75 +1,52 @@
-
-
 body {
-
     background-image: url("../img/Background.png");
+    margin: 0px;
     overflow-wrap: break-word;
     overflow-x: hidden;
 }
 
-.row {
+.Otz{
+    color:  white;
+}
+
+.ContainerOfAllPosts {
+    margin-top: 20px;
+}
+
+.OnePostContent {
+    width: 80%;
     margin-left: 0 !important;
     margin-right: 0 !important;
-}
-
-.FormContainer {
-    margin-top: 15px;
     justify-self: center;
-    width: 100%;
-    background: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    max-width: 600px;
-    text-align: center;
+    margin-bottom: 20px;
+
 }
 
-.Mybtn {
-    margin-top: 10px;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
+.OnePostBack {
+    background-color: white;
+    padding-top: 12px;
+    border-radius: 25px;
 }
 
-.Mybtn:hover {
-    background-color: #0056b3;
+.review {
+    border-radius: 10px;
+    border: 1px solid;
+    padding: 5px;
 }
 
-.form-footer {
-    margin-top: 10px;
-    justify-self: center;
+@media (max-width: 1200px) {
+    .MyCity {
+        width: 50% !important;
+    }
+
+    .rating {
+        width: 50% !important;
+    }
 }
 
-.form-footer a {
-    text-decoration: none;
-}
-
-.Myp {
-    margin: 0;
-    justify-self: end;
-}
-
-.WhyPadding {
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-.ForLabel {
-    margin-top: 2px;
-    margin-bottom: 2px;
-}
-
-.FontLabel {
-    font-weight: 600;
-}
-
-@media (max-width: 599.2px) {
-    .col-6 {
-        width: 100% !important;
+@media (max-width: 600px) {
+    .OnePostContent {
+        width: 90%;
     }
 }
 
@@ -78,14 +55,13 @@ body {
 
 
 
-.Text {
-    color: white;
-}
+
+
+
 
 @media (max-width: 600px) {
     .BeforeKnopka {
         display: none !important;
-
     }
 
     .Knopka {
