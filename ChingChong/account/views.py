@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
-from .models import User
+from django.core.exceptions import PermissionDenied
 from django.contrib.auth.forms import *
 from django.contrib.auth import login, logout, get_user_model
 from django.utils.http import urlsafe_base64_decode
@@ -85,9 +85,11 @@ def reset_confirmed(req, uidb64, token):
 # PROFILE STUFF...
 
 def profile(req, name=None):
-    print(name)
     if name is None:
-        user = req.user
+        if req.user.is_authenticated:
+            user = req.user
+        else:
+            raise PermissionDenied("You are not authenticated to view your profile")
     else:
         user = get_object_or_404(get_user_model(), username=name)
     

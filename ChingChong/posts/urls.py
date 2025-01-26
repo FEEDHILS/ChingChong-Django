@@ -4,5 +4,6 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('create', views.postCreate, name='create_post'),
-    path('all', views.postCreate, name="all_posts"),
+    path('all', views.postAll, name="all_posts"),
+    path('edit/<int:id>', views.postEdit, name="edit_post")
 ]

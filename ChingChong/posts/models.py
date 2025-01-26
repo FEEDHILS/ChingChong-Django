@@ -9,5 +9,7 @@ class Post(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.SET_NULL, blank=True, null=True)
     rating = models.IntegerField("Рейтинг", choices=RATINGTYPE, default='5', blank=False)
     review = models.TextField("Отзыв", blank=False, max_length=1024)
+    likes = models.IntegerField("Лайки", default=0)
+    dislikes = models.IntegerField("Дизлайки", default=0)
 
     publish = models.BooleanField("Опубликован", default=False)

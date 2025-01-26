@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование поста</title>
+    <link rel="stylesheet" href={% static "css/Book.css" %}>
+    <link rel="shortcut icon" href={% static "img/Logo.webp" %}> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
+
+
+    <header class="menu">
+        <a href={% url "index" %}><img class="GoToMain" src={% static "img/Logo.webp" %}></a>
+
+        <div class="container-fluid" >
+            <div class="row BeforeKnopka">
+                <div class="col MenuTable" >
+                    <a href={% url "menu" %} class="GoToMenu">Меню</a>
+                    <a href={% url "contacts" %} class="GoToTeam">О команде</a>
+                    <a href={% url "all_posts" %} class="GoToPosts">Посты</a>
+                </div>
+            </div>
+
+            <div class="dropdown Knopka">
+                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img class="MenuKnopka" src={% static "img/Кнопка.png" %}>
+                </a>
+              
+                <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
+                  <li><a href={% url "menu" %} class="GoToMenu">Меню</a></li>
+                  <hr>
+                  <li><a href={% url "contacts" %} class="GoToTeam">О команде</a></li>
+                  <hr>
+                  <li><a href={% url "all_posts" %} class="GoToPosts">Посты</a></li>
+                </ul>
+              </div>
+        </div>
+    </header>
+    
+    <div class="text-center Text">
+        <h1>Редактирование Отзыва</h1>
+        <p>Пока ваш пост ожидает рассмотрения администрацией, самое время довести его до идеала!</p>
+    </div>
+
+    <section class="review">
+        <form action="" method="post" class="ReviewForm">
+            {% csrf_token %}
+            {% include "forms_errors.html" %}
+            <div class="row">
+                <label class="ForLabel" for="city">Город ресторана:</label>
+                <select class="WhyPadding" id="city" name="restaurant" required>
+                    <option value="0">------</option>
+                    {% for restaurant in cities %}
+                    <option value={{restaurant.id}} {% if form.restaurant.value == restaurant.id %}selected{% endif %}  >{{restaurant.adress}}</option>
+                    {% endfor %}
+                </select>
+
+            
+                <label class="ForLabel" for="rating">Оценка:</label>
+                <select class="WhyPadding" id="rating" name="rating" required>
+                    <option value="1" {% if form.rating.value == 1 %}selected{% endif %}>1 звезда</option>
+                    <option value="2" {% if form.rating.value == 2 %}selected{% endif %}>2 звезды</option>
+                    <option value="3" {% if form.rating.value == 3 %}selected{% endif %}>3 звезды</option>
+                    <option value="4" {% if form.rating.value == 4 %}selected{% endif %}>4 звезды</option>
+                    <option value="5" {% if form.rating.value == 5 %}selected{% endif %}>5 звезд</option>
+                </select>
+                
+
+                <label class="ForLabel" for="review">Ваш отзыв:</label>
+                <textarea maxlength=1024 style="margin-bottom: 15px; border-color:rgb(118, 118, 118);" id="review" name="review" rows="4" required>{{form.review.value}}</textarea>
+
+                <button type="submit" class="Mybtn">Отправить отзыв</button>
+        </form>
+    </section>
+
+    <!-- <footer>
+        <h3>Контактная информация</h3>
+        <p>Адреса ресторанов: <a href="#">Список ресторанов</a></p>
+        <p>Телефон горячей линии: <a href="">+1 (234) 567-89</a></p>
+                    --"tel:+123456789" например--
+        <p>Email: <a href="">support@restaurant.com</a></p>
+    </footer> -->
+
+    <footer>
+        &#169; Copyright 1995-2024 Чинг Чонг.  Все права защищены...
+      </footer>
+</body>
+</html>
