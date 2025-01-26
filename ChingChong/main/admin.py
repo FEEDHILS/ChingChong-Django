@@ -7,3 +7,6 @@ from .models import *
 class CitiesAdmin(admin.ModelAdmin):
     list_display = ('city', 'adress',)
     
+@admin.register(Restaurant)
+class RestaurantAdmin(admin.ModelAdmin):
+    list_display = ('adress',)

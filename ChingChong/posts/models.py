@@ -1,9 +1,13 @@
 from django.db import models
 from account.models import User
+from main.models import Restaurant
 
 # Create your models here.
 class Post(models.Model):
-    sender = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    RATINGTYPE = [ ("1", 1), ("2",2), ("3", 3), ("4", 4), ("5", 5) ]
-    rating = models.IntegerField("Рейтинг", choices=RATINGTYPE, default='5', blank=True)
-    review = models.TextField("Отзыв", blank=True)
+    RATINGTYPE = [ (1, "1 Звезда"), (2,"2 Звезды"), (3, "3 Звезды"), (4, "4 Звезды"), (5, "5 Звезд") ]
+    sender = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.SET_NULL, blank=True, null=True)
+    rating = models.IntegerField("Рейтинг", choices=RATINGTYPE, default='5', blank=False)
+    review = models.TextField("Отзыв", blank=False, max_length=1024)
+
+    publish = models.BooleanField("Опубликован", default=False)
