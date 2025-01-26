@@ -36,15 +36,15 @@
 
                         <div class="overlay" id="overlay"></div>
                         <div class="form-container-authorization" id="loginForm">
-                            <form class="loginFormContent" action="/login_user" method="post">
+                            <form class="loginFormContent" action={% url 'login' %} method="post">
                                 {% csrf_token %}
                                 <div class="text-center">
-                                    <label for="Email">Ваш Email:</label><br>
-                                    <input type="text" id="Email" name="Email" style="width: 100%;">
+                                    <label for="login">Ваш Логин:</label><br>
+                                    <input type="text" id="login" name="username" style="width: 100%;">
                                     <!-- required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"--><br><br>
 
                                     <label for="Password">Пароль:</label><br>
-                                    <input type="Password" id="Password" name="Password" style="width: 100%;">
+                                    <input type="Password" id="Password" name="password" style="width: 100%;">
                                     <!-- required
                                       gpattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*_).{8,}$"
                                       title="Пароль должен содержать хотя бы одну букву, одну цифру и ( _ ), и иметь минимум 8 символов."> --><br><br>
@@ -55,13 +55,13 @@
                                 <div class="row BottomText badrow">
                                     <div class="col-6 TextSleva">
                                         <p>Нет Аккаунта?</p>
-                                        <a class="WithoutUnderline" href={%url "registration" %}>Зарегистрироваться</a>
+                                        <a class="WithoutUnderline" href={% url 'register' %}>Зарегистрироваться</a>
 
                                     </div>
 
                                     <div class="col-6 TextSprava">
                                         <p>Забыли пароль?</p>
-                                        <a class="WithoutUnderline" href="">Восстановить пароль</a>
+                                        <a class="WithoutUnderline" href={% url 'reset' %}>Восстановить пароль</a>
                                     </div>
                                 </div>
 
