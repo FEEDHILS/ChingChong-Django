@@ -33,27 +33,6 @@ main {
     padding: 20px;
     text-align: center;
 }
-.teamcard:hover {
-    color: white;
-    animation: ButtonHover 0.4s 1 forwards;
-    width: 30vw;
-}
-
-
-/* @media (orientation: portrait) {
-
-    .teamcard {
-        width: 40vh;
-        max-width: 95vw;
-    }
-
-} */
-
-
-
-
-
-
 
 
 

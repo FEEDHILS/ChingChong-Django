@@ -17,7 +17,7 @@ def login_user(req):
             login(req, user)
             return redirect('index')
         
-    return render(req, 'authorization.html', {'form': AuthForm})
+    return render(req, 'account/authorization.html', {'form': AuthForm})
 
 def logout_user(req):
     if req.user.is_authenticated:
@@ -46,7 +46,7 @@ def register(req):
             return redirect('index')
         
 
-    return render(req, 'registration.html', {'form': RegisterForm})
+    return render(req, 'account/registration.html', {'form': RegisterForm})
 
 
 # PASSWORD RESTORATION STUFF...
@@ -61,7 +61,7 @@ def forgot(req):
             EmailForm.save(request=req)
             return redirect('password_reset/confirmed')
 
-    return render(req, "password_reset.html", { "form": EmailForm })
+    return render(req, "account/resetPassword.html", { "form": EmailForm })
 
 def reset_confirmed(req, uidb64, token):
     id = urlsafe_base64_decode(uidb64).decode()
@@ -77,14 +77,19 @@ def reset_confirmed(req, uidb64, token):
                 # print("Password has Changed")
                 return redirect('index')
 
-        return render(req, "password_reset.html", { "form": PassForm }) 
+        return render(req, "account/resetNewPassword.html", { "form": PassForm }) 
     else:
         return redirect('index')
 
 
 # PROFILE STUFF...
 
-def profile(req, name):
-    user = get_object_or_404(get_user_model(), username=name)
-    print(user.gender)
-    return render(req, "personalSpace.html", {'current': user})
+def profile(req, name=None):
+    print(name)
+    if name is None:
+        user = req.user
+    else:
+        user = get_object_or_404(get_user_model(), username=name)
+    
+    # print(user.gender)
+    return render(req, "account/personalSpace.html", {'current': user})

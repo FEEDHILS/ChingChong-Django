@@ -72,11 +72,11 @@
             <div class="container SecondToSee">
                 <div class="row Second">
                     <div class="col-6 PersonInfo2">
-                        <h4 class="Gender">Пол пользователя: {{current.gender}}</h4>
+                        <h4 class="Gender">Пол пользователя: {{current.get_gender_display}}</h4>
                         <h4 class="PersonName">Имя пользователя: </h4>
                         <h4 class="Email">Email пользователя:  {{current.email}}</h4>
-                        <h4 class="FavouriteFood">Любимая еда:  {{current.food|default:"Не указано"}}</h4>
-                        <h4 class="City">Город проживания: {{current.city}}</h4>
+                        <h4 class="FavouriteFood">Любимая еда:  {{current.food|capfirst|default:"Не указано"}}</h4>
+                        <h4 class="City">Город проживания: {{current.city|default:"..."}}</h4>
                         <div class="row NumbersOf">
                             <div class="col-6 Posts">
                                 <h5 class="NumbersOfPosts">Кол-во постов пользователя:</h5>

@@ -13,4 +13,4 @@ def postCreate(req):
 
         new_Post.save()
 
-    return render(req, "book.html")
+    return render(req, "posts/book.html")
