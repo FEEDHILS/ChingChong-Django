@@ -1,0 +1,86 @@
+{% load static %}
+<header class="menu">
+    <a href={% url "index" %} ><img class="GoToMain" src={% static "img/Logo.webp" %}></a>
+
+    <div class="container-fluid" >
+        <div class="col badcol Panel">
+          <div class="row badrow BeforeKnopka">
+            <div class="col MenuTable" >
+                <a href={% url "menu" %} class="GoToMenu">Меню</a>
+                <a href={% url "contacts" %} class="GoToTeam">О команде</a>
+                <a href={% url "all_posts" %} class="GoToPosts">Посты</a>
+                <a href="">Cвои посты</a>
+
+            </div>
+
+          </div>
+
+
+          <div class="button-container">
+            
+            {% if user.is_authenticated %}
+            <a id="profile-button" href={% url "profile" %}>
+              <img class="ImgIcon" src={% static "img/ИконкаАватара.png" %} alt="Личный кабинет" />
+            </a>
+            <a class="btn btn-dark" id="logoutButton" href={% url "logout" %}>Выйти</a>
+            {% else %}
+            <a class="btn btn-dark" id="loginButton" {% if redirect %}href={% url "login" %}{% endif %}>Вход</a>
+            {% endif %}
+            
+          </div>
+          
+
+          <div class="overlay" id="overlay"></div>
+
+          <div class="form-container-authorization" id="loginForm">
+              <form class="loginFormContent" method="post" action={% url "login" %}>
+                {% csrf_token %}
+                <div class="text-center">
+                  <label style="color: white;" for="Email">Логин</label><br>
+                  <input type="text" id="Email" name="username" style="width: 100%;" >
+                  <!-- required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"--><br><br>
+      
+                  <label style="color: white;" for="Password">Пароль</label><br>
+                  <input type="Password" id="Password" name="password" style="width: 100%;"> 
+                    <!-- required
+                          gpattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*_).{8,}$"
+                          title="Пароль должен содержать хотя бы одну букву, одну цифру и ( _ ), и иметь минимум 8 символов."> --><br><br>
+      
+                  <button class="BigButton" type="submit">Войти</button>
+                </div>
+
+                <div class="row BottomText badrow">
+                  <div class="col-6 TextSleva">
+                    <p>Нет Аккаунта?</p>
+                    <a class="WithoutUnderline" href={% url "register" %}>Зарегистрироваться</a>
+
+                  </div>
+
+                  <div class="col-6 TextSprava">
+                    <p>Забыли пароль?</p>
+                    <a class="WithoutUnderline" href={% url "reset" %}>Восстановить пароль</a>
+                  </div>
+                </div>
+
+              </form>
+          </div>
+
+
+          <div class="dropdown Knopka">
+            <a class="btn dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+              <img class="MenuKnopka" src={% static "img/Кнопка.png" %}>
+            </a>
+          
+            <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
+              <li><a href={% url "menu" %} class="GoToMenu">Меню</a></li>
+              <hr>
+              <li><a href={% url "contacts" %} class="GoToTeam">О команде</a></li>
+              <hr>
+              <li><a href={% url "all_posts" %} class="GoToPosts">Посты</a></li>
+              <hr>
+                  <li><a href="">Cвои посты</a></li>
+            </ul>
+          </div>
+        </div>
+    </div>
+  </header>

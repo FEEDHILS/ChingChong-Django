@@ -1,37 +1,12 @@
 {% extends "base_auth.html" %}
 {% load static %}
 {% block content %}
-<header class="menu">
-    <a href={% url "index" %} class="GoToMain"><img class="GoToMain" src={% static "img/Logo.webp" %}></a>
+{% include "main_header.html" with redirect=True %}
 
-    <div class="container-fluid" >
-        <div class="row BeforeKnopka">
-            <div class="col MenuTable" >
-                <a href={% url "menu" %} class="GoToMenu">Меню</a>
-                <a href={% url "contacts" %} class="GoToTeam">О команде</a>
-                <a href={% url "all_posts" %} class="GoToPosts">Посты</a>
-            </div>
-        </div>
-
-        <div class="dropdown Knopka">
-            <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-              <img class="MenuKnopka" src={% static "img/Кнопка.png" %}>
-            </a>
-          
-            <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
-              <li><a href={% url "menu" %} class="GoToMenu">Меню</a></li>
-              <hr>
-              <li><a href={% url "contacts" %} class="GoToTeam">О команде</a></li>
-              <hr>
-              <li><a href={% url "all_posts" %} class="GoToPosts">Посты</a></li>
-            </ul>
-          </div>
-    </div>
-</header>
 <form class="FormContainer" method="post">
     {% csrf_token %}
     <h1 class="text-center">Регистрация</h1>
-    {% include "forms_errors.html" %}
+    
 
     <div class="row text-center justify-content-center">
 
@@ -96,7 +71,7 @@
             <div class="row ">
                 <label class="FontLabel ForLabel" for="birthday">День рождения</label>
                 <input class="WhyPadding" type="date" value="{{ form.birthday.data|default:"" }}"
-                id="birthday" name="birthday" placeholder="Ваш день рождения" required>
+                id="birthday" name="birthday" min="1900-01-01" max="2025-01-27"  placeholder="Ваш день рождения" required>
             </div>
         </div>
 
@@ -147,7 +122,7 @@
     <button type="submit" class="Mybtn">Зарегистрироваться</button>
 
     <div class="form-footer">
-        <p class="Myp">Уже есть аккаунт? <a href={% url "index" %}>На Главную</a></p>
+        <p class="Myp">Уже есть аккаунт? <a href={% url "login" %}>Войти</a></p>
     </div>
 </form>
 <script src={% static "js/register_CityDatalist.js" %}></script>

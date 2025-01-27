@@ -11,35 +11,7 @@
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
-
-
-    <header class="menu">
-        <a href={% url "index" %} class="GoToMain"><img class="GoToMain" src={% static "img/Logo.webp" %}></a>
-
-        <div class="container-fluid" >
-            <div class="row BeforeKnopka">
-                <div class="col MenuTable" >
-                    <a href={% url "menu" %} class="GoToMenu">Меню</a>
-                    <a href={% url "contacts" %} class="GoToTeam">О команде</a>
-                    <a href={% url "all_posts" %} class="GoToPosts">Посты</a>
-                </div>
-            </div>
-
-            <div class="dropdown Knopka">
-                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img class="MenuKnopka" src={% static "img/Кнопка.png" %}>
-                </a>
-              
-                <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
-                  <li><a href={% url "menu" %} class="GoToMenu">Меню</a></li>
-                  <hr>
-                  <li><a href={% url "contacts" %} class="GoToTeam">О команде</a></li>
-                  <hr>
-                  <li><a href={% url "all_posts" %} class="GoToPosts">Посты</a></li>
-                </ul>
-              </div>
-        </div>
-    </header>
+    {% include "main_header.html" with redirect=True %}
 
 
 

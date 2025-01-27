@@ -5,6 +5,8 @@
 {% block title %}Авторизация{% endblock title %}
 
 {% block content %}
+    {% comment %} {% include "main_header.html" %} {% endcomment %}
+
     <form class="login-form" method="post">
         {% csrf_token %}
         <h2>Авторизация</h2>
