@@ -26,15 +26,6 @@ class UserRegisterForm(UserCreationForm):
             return cityObject[0]
         
         raise ValidationError('Please use a correct address')
-
-    def clean_number(self):
-        text = self.cleaned_data.get('number')
-        if len(text) == 0:
-            return ''
-        elif len(text) == 11:
-            return text
-        else:
-            raise ValidationError("Phone number must be 11 digits. (Or None)")
         
 
     def save(self, commit = ...):

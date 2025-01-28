@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import *
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from account.models import User
+from posts.models import *
 import json
 from datetime import datetime
 
@@ -19,6 +20,7 @@ def search_city(req):
     
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
+# Я бы лучше переделал бы это с формой, но у меня нет времени!!!
 def profile_update(req):
     if req.method == "POST":
         data = json.loads(req.body)
@@ -43,3 +45,18 @@ def profile_update(req):
             return JsonResponse({'success': True})
         else:
             return JsonResponse({'success': False, 'error': 'Something went wrong'})
+        
+
+
+def like_or_dislike(request, post_id, rating):
+    post = get_object_or_404(Post, id=post_id)
+    user = request.user
+    rating = int(rating)
+
+    # Обновляем оценку пользователя
+    PostInfo.set_user_rating(post, user, rating)
+
+    return JsonResponse({
+        'likes': post.likes,
+        'dislikes': post.dislikes,
+    })

@@ -378,6 +378,11 @@ button:hover {
     padding: 5px;
     background-color: black;
 }
+.MenuTable {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
 
 .GoToMain {
     inline-size: 6vh;

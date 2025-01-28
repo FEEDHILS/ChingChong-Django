@@ -9,7 +9,7 @@
                 <a href={% url "menu" %} class="GoToMenu">Меню</a>
                 <a href={% url "contacts" %} class="GoToTeam">О команде</a>
                 <a href={% url "all_posts" %} class="GoToPosts">Посты</a>
-                <a href="">Cвои посты</a>
+                <a href={% url "my_posts" %}>Cвои посты</a>
 
             </div>
 
@@ -78,7 +78,7 @@
               <hr>
               <li><a href={% url "all_posts" %} class="GoToPosts">Посты</a></li>
               <hr>
-                  <li><a href="">Cвои посты</a></li>
+              <li><a href={% url "my_posts" %}>Cвои посты</a></li>
             </ul>
           </div>
         </div>

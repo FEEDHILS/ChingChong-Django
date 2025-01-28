@@ -9,6 +9,6 @@ urlpatterns = [
     path('password_reset', views.forgot, name='reset'),
     path('password_reset/confirmed', TemplateView.as_view(template_name="account/resetConfirm.html"), name='reset_confirmed'),
     path('password_reset/<uidb64>/<token>/', views.reset_confirmed, name='password_reset'),
-    path('profile/<str:name>/', views.profile),
+    path('profile/<str:name>/', views.profile, name="check_profile"),
     path('profile/', views.profile, name="profile"),
 ]
