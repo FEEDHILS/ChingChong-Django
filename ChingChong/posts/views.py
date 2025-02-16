@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
 from .forms import *
 from main.models import Restaurant
 from .models import *
@@ -7,11 +8,15 @@ from django.core.exceptions import PermissionDenied
 
 
 def postAll(req):
-    login_required(login_url="login")
     posts = Post.objects.filter(publish=True).order_by('-pk')
     print(posts)
     print(posts[0].postinfo_set.all())
     return render(req, "posts/AllPosts.html", {"posts": posts})
+
+def apiPosts(req):
+    posts = Post.objects.filter(publish=True).order_by('-pk')
+    raw_html = render(req, "posts/api_posts.html", {"posts": posts})
+    return JsonResponse({'html': raw_html.content.decode()})
 
 
 @login_required

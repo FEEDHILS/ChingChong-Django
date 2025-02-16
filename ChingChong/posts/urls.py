@@ -9,4 +9,5 @@ urlpatterns = [
     path('edit/<int:id>', views.postEdit, name="edit_post"),
     path('api/like/<int:id>', views.postLike, name="api_post_like"),
     path('api/dislike/<int:id>', views.postDislike, name="api_post_dislike"),
+    path('api/getPosts', views.apiPosts, name="api_get_posts"),
 ]

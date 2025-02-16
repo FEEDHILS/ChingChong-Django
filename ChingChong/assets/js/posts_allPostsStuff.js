@@ -28,15 +28,17 @@ function updateSprites() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    updateSprites();
-
+function postsUpdate() {
+    LikesDislikes.length = 0; // Очищаем прошлый массив
+    
     // Пары Лайк/Дизлайк каждого поста
     document.querySelectorAll(".row.LikesAndDislikes").forEach(item => {
         objects = item.querySelectorAll(".row");
         LikesDislikes.push( [objects[0], objects[1]] );
     });
 
+    updateSprites();
+    
     // Слушаем отдельно каждую пару
     LikesDislikes.forEach(pair => {
         const like = pair[0].querySelector("img");
@@ -44,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const dislike = pair[1].querySelector("img");
         const dislikeText = pair[1].querySelector(".amountD.p1");
-        
         // Нажатие на Лайк
         like.addEventListener("click", function () {
             let likeAmount = parseInt(likeText.textContent);
@@ -68,6 +69,10 @@ document.addEventListener("DOMContentLoaded", function() {
             likeText.textContent = likeAmount;
             dislikeText.textContent = dislikeAmount;
             updateSprites();
+
+            let url = 'http://' + location.host + '/posts/api/like/' + like.dataset.postId;
+            console.log(url);
+            fetch(url, { method: 'GET' });
         });
 
         // Нажатие на дизлайк
@@ -93,27 +98,25 @@ document.addEventListener("DOMContentLoaded", function() {
             likeText.textContent = likeAmount;
             dislikeText.textContent = dislikeAmount;
             updateSprites();
+
+            let url = 'http://' + location.host + '/posts/api/dislike/' + like.dataset.postId;
+            console.log(url);
+            fetch(url, { method: 'GET' });
         });
     });
-});
-// document.querySelectorAll(".LikesAndDislikes").forEach(relation => {
-//     relation.querySelectorAll(".btn.Icona").forEach(button => {
-//         button.addEventListener("click", function () {
-//             // console.log(button);
-//             // console.log(relation);
-//             img = button.children[0];
-//             if (img.dataset.pressed == "True") {
-//                 img.dataset.pressed = "False";
-//             }
-//             else {
-//                 relation.querySelectorAll(".btn.Icona").forEach(button => {
+}
 
-//                 })
-//                 img.dataset.pressed = "True";
-//             }
-//             console.log(button);
+function main() {
+    // Обновляем/Добавляем посты
+    let url = 'http://' + location.host + '/posts/api/getPosts';
+    fetch(url, { method: 'GET' })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Update");
+        document.querySelector(".OurCont").innerHTML = data.html;
+        postsUpdate();
+    });
 
-//             updateSprites();
-//         });
-//     });
-// });
+}
+main();
+setInterval(main, 10000);
