@@ -20,6 +20,24 @@ def search_city(req):
     
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
+@csrf_exempt
+def unique_name(req):
+    query = req.GET.get('name', None)
+    if query:
+        results = User.objects.filter(username=query).exists()
+        return JsonResponse({'results': not results})
+    
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
+@csrf_exempt
+def unique_email(req):
+    query = req.GET.get('email', None)
+    if query:
+        results = User.objects.filter(email=query).exists()
+        return JsonResponse({'results': not results})
+    
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
 # Я бы лучше переделал бы это с формой, но у меня нет времени!!!
 def profile_update(req):
     if req.method == "POST":
@@ -45,18 +63,3 @@ def profile_update(req):
             return JsonResponse({'success': True})
         else:
             return JsonResponse({'success': False, 'error': 'Something went wrong'})
-        
-
-
-def like_or_dislike(request, post_id, rating):
-    post = get_object_or_404(Post, id=post_id)
-    user = request.user
-    rating = int(rating)
-
-    # Обновляем оценку пользователя
-    PostInfo.set_user_rating(post, user, rating)
-
-    return JsonResponse({
-        'likes': post.likes,
-        'dislikes': post.dislikes,
-    })

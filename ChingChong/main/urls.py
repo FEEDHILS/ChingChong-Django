@@ -9,4 +9,6 @@ urlpatterns = [
     path('subs', TemplateView.as_view(template_name="main/Subscription.html"), name="subscription"),
     path('api/search_city', views.search_city),
     path('api/profile_update', views.profile_update),
+    path('api/unique/username', views.unique_name),
+    path('api/unique/email', views.unique_email),
 ]
