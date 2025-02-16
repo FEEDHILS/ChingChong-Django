@@ -21,19 +21,19 @@ class PostsCreationForm(forms.ModelForm):
         model = Post
         fields = ['sender', 'restaurant','rating', 'review']
 
-class PostsEditForm(forms.ModelForm):
-    def clean_restaurant(self):
-        restaurant = self.data.get('restaurant')
-        if restaurant is None:
-            return None
+# class PostsEditForm(forms.ModelForm):
+#     def clean_restaurant(self):
+#         restaurant = self.data.get('restaurant')
+#         if restaurant is None:
+#             return None
         
-        # Проверяем, существует ли ресторан
-        try:
-            restaurantObject = Restaurant.objects.get(pk=restaurant)
-            return restaurantObject
-        except Restaurant.DoesNotExist:
-            raise ValidationError('Incorrect Restaurant selected!!')
+#         # Проверяем, существует ли ресторан
+#         try:
+#             restaurantObject = Restaurant.objects.get(pk=restaurant)
+#             return restaurantObject
+#         except Restaurant.DoesNotExist:
+#             raise ValidationError('Incorrect Restaurant selected!!')
 
-    class Meta:
-        model = Post
-        fields = ['sender', 'restaurant','rating', 'review']
+#     class Meta:
+#         model = Post
+#         fields = ['sender', 'restaurant','rating', 'review']

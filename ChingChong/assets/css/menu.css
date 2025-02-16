@@ -71,10 +71,6 @@ footer {
 
 
 /* Перекидываю стили из мэйна для формы */
-.badcol {
-    padding: 0px !important;
-    display: flex !important;
-}
 
 .container-fluid {
     padding: 0px !important;
@@ -151,7 +147,7 @@ footer {
 
 .TextSprava {
     text-align: right;
-    padding: 0 !important;
+    padding: 0 12px 0 0 !important;
     color: white;
     align-self: end;
 }
@@ -160,7 +156,8 @@ footer {
 .TextSleva {
     text-align: left;
     color: white;
-
+    padding: 0 12px 0 0 !important;
+    align-content: end;
 }
 
 .WithoutUnderline {
@@ -230,6 +227,11 @@ footer {
     text-decoration: none;
 }
 
+.GoToSelfPosts {
+    color: black;
+    text-decoration: none;
+}
+
 .Knopka {
     display: none;
 }
@@ -292,8 +294,8 @@ hr {
 }
 
 .button-container {
-    display: flex; /* Для выравнивания кнопок */
-    align-items: center; /* Вертикальное выравнивание */
+    display: flex; 
+    align-items: center; 
 }
 
 .hidden {

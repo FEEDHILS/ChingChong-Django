@@ -1,7 +1,7 @@
 import csv
 from .models import *
 
-def import_csv(file_path):
+def import_cities(file_path):
     with open(file_path, mode='r', encoding='utf-8') as file:
         reader = csv.DictReader(file)
         

@@ -1,196 +1,205 @@
-{% load static %}
+{% load static %} 
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Личный кабинет</title>
-    <link rel="stylesheet" href="{% static "css/PersonalSpace.css" %}">
-    <link rel="shortcut icon" href="{% static "img/Logo.webp" %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-</head>
-<body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
-
-    <header class="menu">   
-        <a href={% url "index" %}><img class="GoToMain" src={% static "img/Logo.webp" %}></a>
-
-        <div class="container-fluid" >
-            <div class="row BeforeKnopka">
-                <div class="col MenuTable" >
-                    <a href={% url "menu" %} class="GoToMenu">Меню</a>
-                    <a href={% url "contacts" %} class="GoToTeam">О команде</a>
-                    <a href={% url "all_posts" %} class="GoToPosts">Посты</a>
-                    <a href={% url "my_posts" %}>Cвои посты</a>
-                </div>
-            </div>
-
-            <div class="dropdown Knopka">
-                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img class="MenuKnopka" src="{% static "img/Кнопка.png" %}">
-                </a>
-              
-                <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
-                  <li><a href={% url "menu" %} class="GoToMenu">Меню</a></li>
-                  <hr>
-                  <li><a href={% url "contacts" %}  class="GoToTeam">О команде</a></li>
-                  <hr>
-                  <li><a href={% url "all_posts" %} class="GoToPosts">Посты</a></li>
-                  <hr>
-                  <li><a href={% url "my_posts" %}>Cвои посты</a></li>
-                </ul>
-              </div>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Личный кабинет
+  </title>
+  <link href="{% static 'css/PersonalSpace.css' %}" rel="stylesheet"/>
+  <link href="{% static 'img/Logo.webp' %}" rel="shortcut icon"/>
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" rel="stylesheet"/>
+ </head>
+ <body>
+  <script crossorigin="anonymous" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <header class="menu">
+   <a href="{% url 'index' %}">
+    <img class="GoToMain" src="{% static 'img/Logo.webp' %}"/>
+   </a>
+   <div class="container-fluid">
+    <div class="row BeforeKnopka">
+     <div class="col MenuTable">
+      <a class="GoToMenu" href="{% url 'menu' %}">
+       Меню
+      </a>
+      <a class="GoToTeam" href="{% url 'contacts' %}">
+       О команде
+      </a>
+      <a class="GoToPosts" href="{% url 'all_posts' %}">
+       Посты
+      </a>
+      <a href="{% url 'my_posts' %}">
+       Мои отзывы
+      </a>
+     </div>
+    </div>
+    <div class="dropdown Knopka">
+     <a aria-expanded="false" class="btn dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownMenuLink" role="button">
+      <img class="MenuKnopka" src="{% static 'img/Кнопка.png' %}"/>
+     </a>
+     <ul aria-labelledby="dropdownMenuLink" class="dropdown-menu text-center">
+      <li>
+       <a class="GoToMenu" href="{% url 'menu' %}">
+        Меню
+       </a>
+      </li>
+      <hr/>
+      <li>
+       <a class="GoToTeam" href="{% url 'contacts' %}">
+        О команде
+       </a>
+      </li>
+      <hr/>
+      <li>
+       <a class="GoToPosts" href="{% url 'all_posts' %}">
+        Посты
+       </a>
+      </li>
+      <hr/>
+      <li>
+       <a class="GoToSelfPosts" href="{% url 'my_posts' %}">
+        Мои отзывы
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+   <div class="RightScreen">
+    {% if current == user %}
+    <button class="Settings">
+        Настройки
+    </button>
+    {% endif %}
+   </div>
+  </header>
+  <main class="Project">
+   <div class="OurDisplay">
+    <div class="container FirstToSee">
+     <div class="row text-center First">
+      <div class="col-6 PersonIcon">
+       <img id="Iconka" src="{% static 'img/ИконкаАватара.png' %}"/>
+      </div>
+      <div class="col-6 PersonInfo1">
+       <h2 class="Nickname">
+        {% comment %} Ник пользователя: {{current.username}} {% endcomment %}
+       </h2>
+       <div class="row BirthAndPhone">
+        <div class="col-6 Birth">
+         <h4 class="PersonBirth">
+          День рождения: 
+          <p>{{current.birthday|default:"Не указано"}}</p>
+         </h4>
         </div>
-        
-        <div class="RightScreen ">
-            <button class="Settings">Настройки</button>
+        <div class="col-6 Phone">
+         <h4 class="PersonPhone">
+          Номер телефона:
+          <p>{{current.number|default:"Не указано"}}</p>
+         </h4>
         </div>
-    </header>
-
-    <main class="Project">
-        <div class="OurDisplay">
-            <div class="container FirstToSee">
-                <div class="row text-center First">
-                    <div class="col-6 PersonIcon">
-                        <img id="Iconka" src="{% static "img/ИконкаАватара.png" %}">
-                    </div>
-
-                    <div class="col-6 PersonInfo1">
-                        <h2 class="Nickname">Ник пользователя: {{current.username}}</h2>
-                        <div class="row BirthAndPhone">
-                            <div class="col-6 Birth">
-                                <h4 class="PersonBirth">День рождения: {{current.birthday}}</h4>
-                            </div>
-
-                            <div class="col-6 Phone">
-                                <h4 class="PersonPhone">Номер телефона: {{current.number}}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container SecondToSee">
-                <div class="row Second">
-                    <div class="col-6 PersonInfo2">
-                        <h4 class="Gender">Пол пользователя: {{current.get_gender_display}}</h4>
-                        <h4 class="Email">Email пользователя: {{current.email}}</h4>
-                        <h4 class="FavouriteFood">Любимая еда: {{current.food|capfirst|default:"Не указано"}}</h4>
-                        <h4 class="City">Город проживания: {{current.city|default:"..."}}</h4>
-                        <div class="row NumbersOf">
-                            <div class="col-6 Posts">
-                                <h6 class="NumbersOfPosts">Кол-во постов пользователя: {{postData.amount}}</h6>
-                            </div>
-
-                            <div class="col-6 Likes">
-                                <h6 class="NumbersOfLikes">Кол-во лайков пользователя: {{postData.likes}}</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-5 AboutPerson">
-                        <h4 class="col-6 TableAboutPerson">О себе: {{current.aboutMe|default:"..."}}</h4>
-                    </div>
-                </div>
-            </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="container SecondToSee">
+     <div class="row Second">
+      <div class="col-6 PersonInfo2">
+       <h4 class="Gender">
+        Пол пользователя: {{current.get_gender_display}}
+       </h4>
+       <h4 class="PersonName">
+        Имя пользователя: {{current.username}}
+       </h4>
+       <h4 class="Email">
+        Email пользователя: {{current.email|default:"..."}}
+       </h4>
+       <h4 class="FavouriteFood">
+        Любимая еда: {{current.food|default:"Не указано"}}
+       </h4>
+       <h4 class="City">
+        Город проживания: {{current.city|default:"Не указано"}}
+       </h4>
+       <div class="row NumbersOf">
+        <div class="col-6 Posts">
+         <h6 class="NumbersOfPosts">
+          Кол-во постов пользователя: 
+         </h6>
         </div>
-
-
-        <!-- Модальное окно для редактирования -->
-        <div class="modal" id="editProfileModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5>Редактировать профиль</h5>
-                </div>
-                <div class="modal-body">
-                    <form id="editProfileForm">
-                        {% comment %} <div>
-                            <label for="nickname">Никнейм:</label>
-                            <input type="text" id="nickname" name="nickname" placeholder="Введите никнейм" required>
-                        </div> {% endcomment %}
-                        <div>
-                            <label for="birth">День рождения:</label>
-                            <input type="date" id="birth" name="birth" min="1900-01-01" max="2025-01-27">
-                        </div>
-                        <div>
-                            <label for="phone">Телефон:</label>
-                            <input type="text" id="phone" name="phone" placeholder="Введите номер" value={{current.number}}>
-                        </div>
-                        <div>
-                            <label for="city">Email:</label>
-                            <input type="email" id="email" name="email" placeholder="Введите почту" value={{current.email}}>
-                        </div>
-                        <div>
-                            <label for="food">Любимая Еда:</label>
-                            <input type="text" id="food" name="food" value='{{current.food|capfirst}}' placeholder="Введите любимую пищу" >
-                        </div>
-                        <div>
-                            <label for="about">О себе:</label>
-                            <textarea id="about" name="about"  maxlength=256 placeholder="Напишите о себе" rows="3">{{current.aboutMe}}</textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="cancel" id="cancelEdit">Отмена</button>
-                    <button type="submit" class="accept" id="saveEdit">Сохранить</button>
-                </div>
-            </div>
+        <div class="col-6 Likes">
+         <h6 class="NumbersOfLikes">
+          Кол-во лайков пользователя:
+         </h6>
         </div>
-
-
-        <!-- Скрипт для модального окна -->
-         <script>
-
-            const settingsButton = document.querySelector('.Settings');
-            const editModal = document.getElementById('editProfileModal');
-            const cancelEdit = document.getElementById('cancelEdit');
-            const saveEdit = document.getElementById('saveEdit');
-
-            // Открыть модалку
-            settingsButton.addEventListener('click', () => {
-                editModal.style.display = 'flex';
-            });
-
-            // Закрыть модалку
-            cancelEdit.addEventListener('click', () => {
-                editModal.style.display = 'none';
-            });
-
-            // Сохранение данных (отправка на сервер)
-            saveEdit.addEventListener('click', (e) => {
-                e.preventDefault();
-                const form = document.getElementById('editProfileForm');
-                const formData = new FormData(form);
-
-                // Пример отправки данных на сервер (заменить URL на свой)
-                fetch('/api/profile_update', {
-                    method: 'POST',
-                    body: JSON.stringify(Object.fromEntries(formData)),
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "X-CSRFToken": "{{ csrf_token }}",
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Профиль обновлён');
-                        location.reload(); // Обновить страницу
-                    } else {
-                        alert(data.error || 'Ошибка при обновлении профиля');
-                    }
-                })
-                .catch(error => console.error('Ошибка:', error));
-            });
-
-            
-         </script>
-
-
-
-         <!-- Если у нас уже есть сервак -->
-        <!-- <script>
+       </div>
+      </div>
+      <div class="col-5 AboutPerson">
+       <h4 class="col-6 TableAboutPerson">
+        О себе: 
+        <p>{{current.aboutMe|default:"..."}}</p>
+       </h4>
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- Модальное окно для редактирования -->
+   <div class="modal" id="editProfileModal">
+    <div class="modal-content">
+     <div class="modal-header">
+      <h5>
+       Редактировать профиль
+      </h5>
+     </div>
+     <div class="modal-body">
+      <form id="editProfileForm" method="POST">
+        {% csrf_token %}
+       <div>
+        <label for="nickname">
+         Никнейм:
+        </label>
+        <input id="nickname" name="username" placeholder="Введите никнейм" required="" type="text"/>
+       </div>
+       <div>
+        <label for="birth">
+         День рождения:
+        </label>
+        <input id="birth" name="birthday" required="" type="date"/>
+       </div>
+       <div>
+        <label for="phone">
+         Телефон:
+        </label>
+        <input id="phone" name="number" placeholder="Введите номер" required="" type="text"/>
+       </div>
+       <div>
+        <label for="city">
+         Город:
+        </label>
+        <input id="city" name="city" placeholder="Введите город" required="" type="text"/>
+       </div>
+       <div>
+        <label for="about">
+         О себе:
+        </label>
+        <textarea id="about" name="aboutMe" placeholder="Напишите о себе" rows="3"></textarea>
+       </div>
+      </form>
+     </div>
+     <div class="modal-footer">
+      <button class="cancel" id="cancelEdit" type="button">
+       Отмена
+      </button>
+      <button class="accept" id="saveEdit" type="submit">
+       Сохранить
+      </button>
+     </div>
+    </div>
+   </div>
+   <!-- Скрипт для модального окна -->
+   <script src="{% static 'js/account_editForm.js' %}">
+   </script>
+   <!-- Если у нас уже есть сервак -->
+   <!-- <script>
 
             const express = require('express');
             const app = express();
@@ -215,15 +224,9 @@
 
 
         </script> -->
-
-
-        <!-- При загрузке страницы нужно отправить GET-запрос, чтобы получить данные пользователя: -->
-
-
-
-        
-                                <!-- Типа Фронтэнд -->
-        <!-- <script>
+   <!-- При загрузке страницы нужно отправить GET-запрос, чтобы получить данные пользователя: -->
+   <!-- Типа Фронтэнд -->
+   <!-- <script>
 
             window.addEventListener('DOMContentLoaded', () => {
                 fetch('/api/get-profile')
@@ -255,44 +258,91 @@
 
 
         </script> -->
-
-
-
-
-
-        
-    </main>
-
-    <footer class="footer">
-        <p>Чинг Чонг: Сеть Ресторанов<br>Китайской Кухни</p>
-        <a href={% url "index" %}><img class="GoToMain" src="{% static "img/Logo.webp" %}"></a><br>
-        <a id="openModal" href="">Пользовательское соглашение</a>
-
-        <div class="modal" id="userAgreementModal">
-            <div class="modal-content">
-                <div class="modal-header">Пользовательское соглашение</div>
-                <div class="modal-body">
-                    <p>Добро пожаловать на наш сайт! Перед использованием наших услуг, пожалуйста, ознакомьтесь с настоящим Пользовательским соглашением.</p>
-                    <p><b>1. Общие положения</b><br>Настоящее соглашение регулирует отношения между владельцем сайта (далее — "Администрация") и пользователем (далее — "Пользователь"). Посещая сайт, вы соглашаетесь с условиями данного соглашения.</p>
-                    <p><b>2. Использование сайта</b><br>- Пользователь обязуется использовать сайт в соответствии с действующим законодательством.<br>- Запрещено размещение материалов, нарушающих права третьих лиц, в том числе авторские права.<br>- Администрация не несет ответственности за достоверность информации, размещенной Пользователями.</p>
-                    <p><b>3. Персональные данные</b><br>- Используя сайт, вы даете согласие на обработку ваших персональных данных в соответствии с нашей Политикой конфиденциальности.<br>- Персональные данные используются исключительно для предоставления услуг сайта.</p>
-                    <p><b>4. Ограничение ответственности</b><br>- Сайт предоставляется "как есть", без каких-либо гарантий.<br>- Администрация не несет ответственности за любые убытки, возникающие в результате использования сайта.</p>
-                    <p><b>5. Изменение условий</b><br>Администрация оставляет за собой право изменять условия соглашения без предварительного уведомления. Актуальная версия соглашения всегда доступна на сайте.</p>
-                </div>
-                <div class="modal-footer">
-                    <label>
-                        <input type="checkbox" id="agreementCheckbox"> Я принимаю условия
-                    </label>
-                    <div>
-                        <button class="cancel" id="closeModal">Отмена</button>
-                        <button class="accept" id="acceptButton" disabled>Принять условия</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            const openModal = document.getElementById('openModal');
+  </main>
+  <footer class="footer">
+   <p>
+    Чинг Чонг: Сеть Ресторанов
+    <br/>
+    Китайской Кухни
+   </p>
+   <a href="{% url 'index' %}">
+    <img class="GoToMain" src="{% static 'img/Logo.webp' %}"/>
+   </a>
+   <br/>
+   <a href="" id="openModal">
+    Пользовательское соглашение
+   </a>
+   <div class="modal" id="userAgreementModal">
+    <div class="modal-content">
+     <div class="modal-header">
+      Пользовательское соглашение
+     </div>
+     <div class="modal-body">
+      <p>
+       Добро пожаловать на наш сайт! Перед использованием наших услуг, пожалуйста, ознакомьтесь с настоящим Пользовательским соглашением.
+      </p>
+      <p>
+       <b>
+        1. Общие положения
+       </b>
+       <br/>
+       Настоящее соглашение регулирует отношения между владельцем сайта (далее — "Администрация") и пользователем (далее — "Пользователь"). Посещая сайт, вы соглашаетесь с условиями данного соглашения.
+      </p>
+      <p>
+       <b>
+        2. Использование сайта
+       </b>
+       <br/>
+       - Пользователь обязуется использовать сайт в соответствии с действующим законодательством.
+       <br/>
+       - Запрещено размещение материалов, нарушающих права третьих лиц, в том числе авторские права.
+       <br/>
+       - Администрация не несет ответственности за достоверность информации, размещенной Пользователями.
+      </p>
+      <p>
+       <b>
+        3. Персональные данные
+       </b>
+       <br/>
+       - Используя сайт, вы даете согласие на обработку ваших персональных данных в соответствии с нашей Политикой конфиденциальности.
+       <br/>
+       - Персональные данные используются исключительно для предоставления услуг сайта.
+      </p>
+      <p>
+       <b>
+        4. Ограничение ответственности
+       </b>
+       <br/>
+       - Сайт предоставляется "как есть", без каких-либо гарантий.
+       <br/>
+       - Администрация не несет ответственности за любые убытки, возникающие в результате использования сайта.
+      </p>
+      <p>
+       <b>
+        5. Изменение условий
+       </b>
+       <br/>
+       Администрация оставляет за собой право изменять условия соглашения без предварительного уведомления. Актуальная версия соглашения всегда доступна на сайте.
+      </p>
+     </div>
+     <div class="modal-footer">
+      <label>
+       <input id="agreementCheckbox" type="checkbox"/>
+       Я принимаю условия
+      </label>
+      <div>
+       <button class="cancel" id="closeModal">
+        Отмена
+       </button>
+       <button class="accept" disabled="" id="acceptButton">
+        Принять условия
+       </button>
+      </div>
+     </div>
+    </div>
+   </div>
+   <script>
+    const openModal = document.getElementById('openModal');
             const modal = document.getElementById('userAgreementModal');
             const closeModal = document.getElementById('closeModal');
             const acceptButton = document.getElementById('acceptButton');
@@ -315,8 +365,7 @@
                 alert('Условия приняты!');
                 modal.style.display = 'none';
             });
-        </script>
-    </footer>
-
-</body>
+   </script>
+  </footer>
+ </body>
 </html>

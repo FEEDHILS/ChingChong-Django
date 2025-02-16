@@ -15,7 +15,7 @@
  <body>
   <script crossorigin="anonymous" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
   </script>
-  {% comment %} <header class="menu">
+  <header class="menu">
    <a href="{% url 'index' %}">
     <img class="GoToMain" src="{% static 'img/Logo.webp' %}"/>
    </a>
@@ -31,6 +31,9 @@
        </a>
        <a class="GoToPosts" href="{% url 'all_posts' %}">
         Посты
+       </a>
+       <a href="{% url 'my_posts' %}">
+        Мои отзывы
        </a>
       </div>
      </div>
@@ -50,7 +53,6 @@
      </div>
      <div class="form-container-authorization" id="loginForm">
       <form action="{% url 'login' %}" class="loginFormContent" method="POST">
-        {% csrf_token %}
        <div class="text-center">
         <label for="Email" style="color: white;">
          Логин
@@ -135,12 +137,17 @@
          Посты
         </a>
        </li>
+       <hr/>
+       <li>
+        <a class="GoToSelfPosts" href="{% url 'my_posts' %}">
+         Мои отзывы
+        </a>
+       </li>
       </ul>
      </div>
     </div>
    </div>
-  </header> {% endcomment %}
-  {% include "menubar.html" %}
+  </header>
   <div>
    <div id="logo">
     <img id="logoimg" src="{% static 'img/Logo.webp' %}"/>

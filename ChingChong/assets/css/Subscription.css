@@ -90,6 +90,10 @@ body {
     }
 }
 
+.badrow {
+    margin: 0px !important;
+}
+
 
 
 
@@ -257,6 +261,11 @@ body {
 }
 
 .GoToPosts {
+    color: black;
+    text-decoration: none;
+}
+
+.GoToSelfPosts {
     color: black;
     text-decoration: none;
 }

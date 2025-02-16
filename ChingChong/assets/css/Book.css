@@ -184,7 +184,7 @@ footer  {
 
 .TextSprava {
     text-align: right;
-    padding: 0 !important;
+    padding: 0 12px 0 0;
     color: white;
     align-self: end;
 }
@@ -193,7 +193,8 @@ footer  {
 .TextSleva {
     text-align: left;
     color: white;
-
+    padding: 0 12px 0 0 !important;
+    align-content: end;
 }
 
 .WithoutUnderline {
@@ -259,6 +260,11 @@ footer  {
 }
 
 .GoToPosts {
+    color: black;
+    text-decoration: none;
+}
+
+.GoToSelfPosts {
     color: black;
     text-decoration: none;
 }

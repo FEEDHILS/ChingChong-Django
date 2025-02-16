@@ -21,7 +21,7 @@ class UserRegisterForm(UserCreationForm):
     
     def clean_city(self):
         city = self.cleaned_data.get('city')
-        cityObject = Cities.objects.filter(adress=city)
+        cityObject = Cities.objects.filter(city=city)
         if cityObject:
             return cityObject[0]
         

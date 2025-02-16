@@ -248,6 +248,11 @@ body {
     text-decoration: none;
 }
 
+.GoToSelfPosts {
+    color: black;
+    text-decoration: none;
+}
+
 .Knopka {
     display: none;
 }

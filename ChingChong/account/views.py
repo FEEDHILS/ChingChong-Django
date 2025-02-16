@@ -17,7 +17,7 @@ def login_user(req):
             login(req, user)
             return redirect('index')
         
-    return render(req, 'account/authorization.html', {'form': AuthForm})
+    return render(req, 'account/Authorization.html', {'form': AuthForm})
 
 def logout_user(req):
     if req.user.is_authenticated:
@@ -30,6 +30,7 @@ def register(req):
     if req.method == 'POST':
         genderM = req.POST.get('genderM')
         genderF = req.POST.get('genderF')
+
         gender = 'D'
         if genderM == 'on':
             gender = 'M'
@@ -43,10 +44,12 @@ def register(req):
         if RegisterForm.is_valid():
             user = RegisterForm.save()
             login(req, user)
-            return redirect('index')
+            return redirect('profile')
+        else:
+            print( RegisterForm.errors.as_json() )
         
 
-    return render(req, 'account/registration.html', {'form': RegisterForm})
+    return render(req, 'account/Registration.html', {'form': RegisterForm})
 
 
 # PASSWORD RESTORATION STUFF...
@@ -54,14 +57,14 @@ def register(req):
 # Страничка с формой ввода Email, для восст. пароля.
 def forgot(req):
     if req.method == "GET":
-        EmailForm = PasswordResetForm()
+        EmailForm = PasswordResetForm(email_template_name="emails/password_reset_email.html")
     else:
-        EmailForm = PasswordResetForm(req.POST)
+        EmailForm = PasswordResetForm(req.POST, email_template_name="emails/password_reset_email.html")
         if EmailForm.is_valid():
             EmailForm.save(request=req)
-            return redirect('password_reset/confirmed')
+            return redirect('reset_password_confirm')
 
-    return render(req, "account/resetPassword.html", { "form": EmailForm })
+    return render(req, "account/RePassword.html", { "form": EmailForm })
 
 def reset_confirmed(req, uidb64, token):
     id = urlsafe_base64_decode(uidb64).decode()
@@ -74,17 +77,19 @@ def reset_confirmed(req, uidb64, token):
             PassForm = SetPasswordForm(user, req.POST)
             if PassForm.is_valid():
                 PassForm.save()
+                login(req, user)
                 # print("Password has Changed")
-                return redirect('index')
+                return redirect('profile')
 
-        return render(req, "account/resetNewPassword.html", { "form": PassForm }) 
+        return render(req, "account/NewPassword.html", { "form": PassForm }) 
     else:
-        return redirect('index')
+        return PermissionDenied()
 
 
 # PROFILE STUFF...
 
 def profile(req, name=None):
+    # If name is none, we assume user want to see their own profile.
     if name is None:
         if req.user.is_authenticated:
             user = req.user
@@ -94,4 +99,4 @@ def profile(req, name=None):
         user = get_object_or_404(get_user_model(), username=name)
     
     # print(user.gender)
-    return render(req, "account/personalSpace.html", {'current': user})
+    return render(req, "account/PersonalSpace.html", {'current': user})

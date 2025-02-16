@@ -5,92 +5,158 @@ body {
     overflow-x: hidden;
 }
 
-
-footer  {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    text-align: end;
-    margin: 0px 10px 0px 10px;
-    color: rgb(200, 196, 196);
-}
-
-.RePasswordForm {
-    width: 50%;
-    text-align: center;
-    background-color: rgb(255, 255, 255);
-    border-radius: 15px;
-    padding: 20px;
-}
-
-.RePass {
-    display: flex;
-    justify-content: center;
-    overflow-wrap: break-word;
-    overflow-x: hidden;
-    padding-bottom: 10px;
-    position: absolute;
-    width: 100%;   
-    top: 20%;   
-
-}
-
 .row {
+    margin: 0 !important;
+}
+
+.Otz{
+    color:  white;
+}
+
+.ContainerOfAllPosts {
+    margin-top: 5px;
+}
+
+.OnePostContent {
+    width: 80%;
     margin-left: 0 !important;
     margin-right: 0 !important;
+    justify-self: center;
+    margin-bottom: 20px !important;
+
 }
 
-.WhyPadding {
-    padding-top: 0;
-    padding-bottom: 0;
+.OnePostBack {
+    background-color: white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 25px;
 }
 
-.ForLabel {
-    margin-top: 10px !important;
-    margin-bottom: 15px;
-    font-weight: 600;
+.review {
+    border-radius: 10px;
+    border: 1px solid;
+    padding: 5px;
 }
 
-.Mybtn {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px !important;
-    margin-bottom: 15px;
+.LikeIcon {
+    width: 8vh;
 }
 
-.Mybtn:hover {
-    background-color: #0056b3;
+.DislikeIcon {
+    width: 8vh;
 }
 
-@media (max-width: 925px) {
-    .RePasswordForm {
-        width: 70%;
+.LikesAndDislikes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Likes {
+    margin-bottom: 5px;
+}
+
+.Icona {
+    padding: 5px 5px 0px 5px;
+    border-radius: 50%;
+    width: 11vh;
+}
+
+.ForIcona {
+    text-align: center;
+}
+
+.SettingIcon {
+    width: 8vh;
+}
+
+.LeftPadding {
+    padding-left: 0 !important;
+}
+
+.RightPadding {
+    padding-right: 0 !important;
+}
+
+.ButtonSetting {
+    width: 11vh;
+    border-radius: 50%;
+}
+
+.ForButtonSetting {
+    text-align: end;
+}
+
+.LeftPart {
+    text-align: center;
+    padding-right: 6px !important;
+}
+
+.Condition {
+    color: #7c7a7a; 
+}
+
+.ButtonText{
+    align-self: center;
+}
+
+.MyBtn {
+    font-size: 14px;
+    background-color: red;
+    border-radius: 50%;
+    height: 49.275px;
+}
+
+.p1 {
+    margin-bottom: 0;
+}
+
+@media (max-width: 514px) {
+    
+    .col-6 {
+        width: 100% !important;
+    }
+
+    .LikeIcon{
+        width: 5vh;
+    }
+
+    .DislikeIcon {
+        width: 5vh;
+    }
+
+    .Icona {
+        width: 8vh;
+    }
+
+}
+
+.dropdown-toggle::after {
+    border-left: 0px !important; 
+    border-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.MyCity {
+    color: black;
+    padding-left: 0 !important;
+}
+
+@media (max-width: 1200px) {
+    .MyCity {
+        width: 50% !important;
+    }
+
+    .rating {
+        width: 50% !important;
     }
 }
 
-
-
-@media (max-width: 500px) {
-    .RePasswordForm {
-        width: 80%;
-    }
-}
-
-@media (max-width: 300px) {
-    .RePasswordForm {
+@media (max-width: 673px) {
+    .OnePostContent {
         width: 90%;
     }
 }
-
-
-
-
 
 
 
@@ -100,6 +166,10 @@ footer  {
     padding: 0px !important;
     display: flex !important;
 
+}
+
+.badrow {
+    margin: 0 !important;
 }
 
 .container-fluid {
@@ -173,13 +243,11 @@ footer  {
     padding-bottom: 10px;
     padding-right: 5px;
     width: 97%;
-    align-items: end;
 }
-
 
 .TextSprava {
     text-align: right;
-    padding: 0 12px 0 0 !important;
+        
     color: white;
     align-self: end;
 }
@@ -188,15 +256,72 @@ footer  {
 .TextSleva {
     text-align: left;
     color: white;
-    padding: 0 12px 0 0 !important;
-    align-content: end;
+    padding-left: 0 !important;
+
 }
 
 .WithoutUnderline {
     text-decoration: none;
 }
 
+@media (max-width: 520px) {
+    .TextSleva {
+        width: 50% !important;
+    }
 
+    .TextSleva p {
+        font-size: 14px !important;
+    }
+
+    .TextSleva a {
+        font-size: 12px !important;
+    }
+
+    .TextSprava {
+        width: 50% !important;
+    }
+
+    .TextSprava p {
+        font-size: 14px !important;
+    }
+
+    .TextSprava a {
+        font-size: 12px !important;
+    }
+
+    .LeftPart {
+        width: 100% !important;
+    }
+
+    .RightPart {
+        width: 100% !important;
+    }
+
+    .ForButtonSetting {
+        text-align: center;
+    }
+}
+
+
+
+@media (max-width: 388px) {
+
+    .TextSleva p {
+        font-size: 12px !important;
+    }
+
+    .TextSleva a {
+        font-size: 10px !important;
+    }
+
+    .TextSprava p {
+        font-size: 12px !important;
+    }
+
+    .TextSprava a {
+        font-size: 10px !important;
+    }
+}
 
 
 
@@ -273,12 +398,6 @@ footer  {
     margin-right: 5px;
 }
 
-.dropdown-toggle::after {
-    border-left: 0px !important; 
-    border-right: 0px !important;
-    margin-left: 0px !important;
-}
-
 header {
     position: sticky;
     width: 100%;
@@ -332,4 +451,14 @@ hr {
 
 .hidden {
     display: none;
+}
+
+
+
+
+
+
+/* Пост без прорверрки админа */
+.PostWithoutCheck {
+    background-color: rgb(215, 204, 204);
 }

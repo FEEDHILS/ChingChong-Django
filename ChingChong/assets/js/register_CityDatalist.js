@@ -12,9 +12,9 @@ async function DataBaseRequest() {
         dataList.innerHTML = '' // Удаляем все предыдущие опции
         // Добавляем новые опции
         data.results.forEach(item => {
-            console.log(item.adress)
+            console.log(item.city)
             const option = document.createElement('option');
-            option.value = item.adress;
+            option.value = item.city;
             dataList.appendChild(option)
         })
     }
