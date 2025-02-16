@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} 
 {% load custom_filters %}
 <!DOCTYPE html>
 <html lang="ru">
@@ -31,6 +31,9 @@
        </a>
        <a class="GoToPosts" href="{% url 'all_posts' %}">
         Посты
+       </a>
+       <a href="{% url 'my_posts' %}">
+        Мои отзывы
        </a>
       </div>
      </div>
@@ -134,6 +137,12 @@
          Посты
         </a>
        </li>
+       <hr/>
+       <li>
+        <a class="GoToSelfPosts" href="{% url 'my_posts' %}">
+         Мои отзывы
+        </a>
+       </li>
       </ul>
      </div>
     </div>
@@ -169,37 +178,38 @@
        Сам отзыв
       </p>
       <div class="row LikesAndDislikes">
-       <div class="col-6 Likes">
+       <div class="col-3 Likes">
         <div class="row">
-         <div class="col">
-          <p class="LikesAmount p1 text-center">
+         <div class="col-auto text-center">
+          <p class="LikesAmount p1">
            Лайков:
           </p>
-          <p class="amountL p1 text-center">
-           ...
+          <p class="amountL p1">
+           0
           </p>
          </div>
-         <div class="col">
-          <button class="Icona">
-           <img class="LikeIcon" src="{% static 'img/Лайк.png' %}"/>
-          </button>
+         <div class="col-auto ForIcona">
+          <a class="btn Icona">
+           <img class="LikeIcon" data-pressed="False" src="{% static 'img/like.png' %}"/>
+          </a>
          </div>
         </div>
        </div>
-       <div class="col-6 Dislikes">
+       <div class="col-3 Dislikes">
         <div class="row">
-         <div class="col">
-          <p class="DislikesAmount p1 text-center">
-           Дизлайков
+         <div class="col-auto text-center">
+          <p class="DislikesAmount p1">
+           Дизлайков:
           </p>
-          <p class="amountD p1 text-center">
-           ...
+          <p class="amountD p1">
+           2
           </p>
          </div>
-         <div class="col">
-          <button class="Icona">
-           <img class="DislikeIcon" src="{% static 'img/Дизлайк.png' %}"/>
-          </button>
+         <!-- <div class="col ForIcona"><button class="Icona"><img class="DislikeIcon" src="img/Дизлайк.png"></button></div> -->
+         <div class="col-auto ForIcona">
+          <a class="btn Icona">
+           <img class="DislikeIcon" data-pressed="True" src="{% static 'img/dislike.png' %}"/>
+          </a>
          </div>
         </div>
        </div>
@@ -233,40 +243,46 @@
         {{post.review}}
        </p>
        <div class="row LikesAndDislikes">
-        <div class="col-6 Likes">
+        <div class="col-3 Likes">
          <div class="row">
-          <div class="col">
-           <p class="LikesAmount p1 text-center">
+          <div class="col-auto text-center">
+           <p class="LikesAmount p1">
             Лайков:
            </p>
-           <p class="amountL p1 text-center">
+           <p class="amountL p1">
             {{post.postinfo_set.all|count_rating:1}}
            </p>
           </div>
-          <div class="col">
+          <div class="col-auto ForIcona">
             {% if user.is_authenticated %}
-           <button class="Icona">
+           {% comment %} <button class="Icona">
             <a href="{% url 'api_post_like' post.pk %}"><img class="LikeIcon" src="{% static 'img/Лайк.png' %}"/></a>
-           </button>
+           </button> {% endcomment %}
+           <a class="btn Icona" href="{% url 'api_post_like' post.pk %}">
+            <img class="LikeIcon" data-pressed="{{post.postinfo_set.all|has_liked:user}}" src="{% static 'img/like.png' %}"/>
+           </a>
            {% endif %}
           </div>
          </div>
         </div>
-        <div class="col-6 Dislikes">
+        <div class="col-3 Dislikes">
          <div class="row">
-          <div class="col">
-           <p class="DislikesAmount p1 text-center">
-            Дизлайков
+          <div class="col-auto text-center">
+           <p class="DislikesAmount p1">
+            Дизлайков:
            </p>
-           <p class="amountD p1 text-center">
+           <p class="amountD p1">
             {{post.postinfo_set.all|count_rating:-1}}
            </p>
           </div>
-          <div class="col">
+          <div class="col-auto ForIcona">
             {% if user.is_authenticated %}
-           <button class="Icona">
+           {% comment %} <button class="Icona">
             <a href="{% url 'api_post_dislike' post.pk %}"><img class="DislikeIcon" src="{% static 'img/Дизлайк.png' %}"/></a>
-           </button>
+           </button> {% endcomment %}
+           <a class="btn Icona" href="{% url 'api_post_dislike' post.pk %}">
+            <img class="DislikeIcon" data-pressed="{{post.postinfo_set.all|has_disliked:user}}" src="{% static 'img/dislike.png' %}"/>
+           </a>
            {% endif %}
           </div>
          </div>
@@ -277,5 +293,49 @@
     {% endfor %}
    </div>
   </div>
+
+
+  <nav aria-label="Page navigation example" class="justify-content-center d-flex">
+   <ul class="pagination">
+    <li class="page-item">
+     <a class="page-link" href="#">
+      Назад
+     </a>
+    </li>
+    <li class="page-item">
+     <a class="page-link" href="#">
+      1
+     </a>
+    </li>
+    <li class="page-item">
+     <a class="page-link" href="#">
+      2
+     </a>
+    </li>
+    <li class="page-item">
+     <a class="page-link" href="#">
+      3
+     </a>
+    </li>
+    <li class="page-item">
+     <a class="page-link" href="#">
+      Вперед
+     </a>
+    </li>
+   </ul>
+  </nav>
+  <!-- Это важно, поскольку джанго использует статические файлы, и я не хочу писать скрипт здесь, поэтому надо передавать как-то путь к картинкам. -->
+  <script>
+   window.likeSprites = {
+          normal: "{% static 'img/like.png' %}",
+          pressed: "{% static 'img/like_pressed.png' %}",
+      };
+      window.dislikeSprites = {
+          normal: "{% static 'img/dislike.png' %}",
+          pressed: "{% static 'img/dislike_pressed.png' %}",
+      };
+  </script>
+  <script src="{% static 'js/posts_allPostsStuff.js' %}">
+  </script>
  </body>
 </html>
