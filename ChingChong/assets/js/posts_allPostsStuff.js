@@ -108,7 +108,7 @@ function postsUpdate() {
 
 function main() {
     // Обновляем/Добавляем посты
-    let url = 'http://' + location.host + '/posts/api/getPosts';
+    let url = 'http://' + location.host + '/posts/api/getPosts?page=' + window.page + '&filter=' + window.filter;
     fetch(url, { method: 'GET' })
     .then(response => response.json())
     .then(data => {

@@ -161,20 +161,20 @@
      </div>
      <form class="FormContainer" id="editProfileForm" method="POST" enctype="multipart/form-data" action="{% url 'profile_update' %}">
     {% csrf_token %}
-     <div class="modal-body">
+     <div class="modal-body text-center">
        {% comment %} <div>
         <label for="nickname">
          Никнейм:
         </label>
         <input id="nickname" name="username" placeholder="Введите никнейм" required="" type="text"/>
        </div> {% endcomment %}
-       <div>
+       <div class="mb-2">
         <label for="birth">
          День рождения:
         </label>
-        <input id="birth" name="birthday" value="{{user.birthday|date:'Y-m-d'|default:'2000-01-01'}}"  required="" type="date"/>
+        <input id="birth" name="birthday" max="2025-02-17" min="1960-01-01" value="{{user.birthday|date:'Y-m-d'|default:'2000-01-01'}}"  required="" type="date"/>
        </div>
-       <div>
+       <div class="mb-2">
         <label for="phone">
          Телефон:
         </label>
@@ -185,7 +185,7 @@
         {% comment %} <input type="text" placeholder="Телефон" id="name" name="number" class="phone_mask" required>  {% endcomment %}
         <script>$(".phone_mask").mask("+7(999)999-99-99");</script>
        </div>
-       <div>
+       <div class="mb-2">
         <p class="error" id="cityError" style="display: none; color: red; position: absolute; top: 15%; left: 50%; z-index: 10; background: white; padding: 5px; border: 1px solid red; border-radius: 4px;">
             Пожалуйста, выберите город из списка.
         </p>
@@ -197,19 +197,19 @@
         </datalist>
         <script src="{% static 'js/profile_CityDatalist.js' %}"></script>
        </div>
-       <div>
+       <div class="mb-2">
         <label for="food">
          Еда:
         </label>
         <input id="food" name="food" placeholder="{{user.food}}" type="text"/>
        </div>
-       <div>
+       <div class="mb-2">
         <label for="about">
          О себе:
         </label>
         <textarea id="about" name="aboutMe" maxlength=256 placeholder="Напишите о себе" rows="3">{{user.aboutMe|default:""}}</textarea>
        </div>
-       <div>
+       <div class="mb-2">
         <label for="picture">
          Аватар Пользователя:
         </label>
