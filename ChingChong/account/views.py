@@ -34,7 +34,6 @@ def register(req):
     if req.method == 'POST':
         genderM = req.POST.get('genderM')
         genderF = req.POST.get('genderF')
-        print(req.POST.get('gender'))
 
         RegisterForm = UserRegisterForm(data=req.POST)
         if RegisterForm.is_valid():

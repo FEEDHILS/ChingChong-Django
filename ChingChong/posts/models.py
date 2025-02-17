@@ -17,11 +17,16 @@ class Post(models.Model):
     class Meta:
         verbose_name = "Пост"
         verbose_name_plural = "Посты"
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if not self.publish and not self.sender:
+            self.delete()
     
 
 class PostInfo(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     RATINGTYPE = [ (0, "None"), (1,"Like"), (-1, "Dislike"), ]
     rating = models.IntegerField("Оценка", choices=RATINGTYPE, default=0, blank=False)
 

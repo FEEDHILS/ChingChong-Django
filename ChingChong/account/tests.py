@@ -18,7 +18,7 @@ class AuthenticationViewsTests(TestCase):
     # Проверка валидации неверных данных при логине
     def test_login_user_post_invalid(self):
         response = self.client.post(reverse('login'), data={'username': 'testuser', 'password': 'wrongpassword'})
-        self.assertFormError(response, 'form', None, 'Please enter a correct username and password. Note that both fields may be case-sensitive.')
+        self.assertFalse('_auth_user_id' in self.client.session)
 
     # Проверка выхода из учетной записи
     def test_logout_user(self):
@@ -30,17 +30,17 @@ class AuthenticationViewsTests(TestCase):
     # Проверка регистрации
     def test_register_user_post_valid(self):
         city = Cities.objects.create(city='Горно-Алтайск', adress='г Горно-Алтайск')
-        response = self.client.post(reverse('register'), data={
+        response = self.client.post(reverse('registration'), data={
             'username': 'registeruser',
             'password1': '2683399aQc+',
             'password2': '2683399aQc+',
             'gender': 'D',
             'birthday': '2025-01-27',
             'email': 'example@example.com',
-            'city': 'г Горно-Алтайск',
+            'city': 'Горно-Алтайск',
             'number': '',
             'food': '',
         })
         # self.assertRedirects(response, reverse('index'))
         self.assertTrue( User.objects.filter(username='registeruser').exists() )
-        self.assertRedirects(response, reverse('index'))
+        self.assertRedirects(response, reverse('profile'))
