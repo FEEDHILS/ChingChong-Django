@@ -127,7 +127,7 @@
         Любимая еда: {{current.food|default:"Не указано"}}
        </h4>
        <h4 class="City">
-        Город проживания: {{current.city|default:"Не указано"}}
+        Город проживания: {{current.city.city|default:"Не указано"}}
        </h4>
        <div class="row NumbersOf">
         <div class="col-6 Posts">
@@ -159,54 +159,73 @@
        Редактировать профиль
       </h5>
      </div>
+     <form class="FormContainer" id="editProfileForm" method="POST" enctype="multipart/form-data" action="{% url 'profile_update' %}">
+    {% csrf_token %}
      <div class="modal-body">
-      <form id="editProfileForm" method="POST">
-        {% csrf_token %}
-       <div>
+       {% comment %} <div>
         <label for="nickname">
          Никнейм:
         </label>
         <input id="nickname" name="username" placeholder="Введите никнейм" required="" type="text"/>
-       </div>
+       </div> {% endcomment %}
        <div>
         <label for="birth">
          День рождения:
         </label>
-        <input id="birth" name="birthday" required="" type="date"/>
+        <input id="birth" name="birthday" value="{{user.birthday|date:'Y-m-d'|default:'2000-01-01'}}"  required="" type="date"/>
        </div>
        <div>
         <label for="phone">
          Телефон:
         </label>
-        <input id="phone" name="number" placeholder="Введите номер" required="" type="text"/>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.js" type="text/javascript"></script>
+        
+        <input id="phone" name="number" class="phone_mask" placeholder="{{user.number|default:"Введите номер"}}" type="text"/>
+        {% comment %} <input type="text" placeholder="Телефон" id="name" name="number" class="phone_mask" required>  {% endcomment %}
+        <script>$(".phone_mask").mask("+7(999)999-99-99");</script>
        </div>
        <div>
+        <p class="error" id="cityError" style="display: none; color: red; position: absolute; top: 15%; left: 50%; z-index: 10; background: white; padding: 5px; border: 1px solid red; border-radius: 4px;">
+            Пожалуйста, выберите город из списка.
+        </p>
         <label for="city">
          Город:
         </label>
-        <input id="city" name="city" placeholder="Введите город" required="" type="text"/>
+        <input id="city" name="city" list="Cities" placeholder="{{user.city.city}}" type="text"/>
+        <datalist id="Cities">
+        </datalist>
+        <script src="{% static 'js/profile_CityDatalist.js' %}"></script>
+       </div>
+       <div>
+        <label for="food">
+         Еда:
+        </label>
+        <input id="food" name="food" placeholder="{{user.food}}" type="text"/>
        </div>
        <div>
         <label for="about">
          О себе:
         </label>
-        <textarea id="about" name="aboutMe" placeholder="Напишите о себе" rows="3"></textarea>
+        <textarea id="about" name="aboutMe" maxlength=256 placeholder="Напишите о себе" rows="3">{{user.aboutMe|default:""}}</textarea>
        </div>
-      </form>
+       <div>
+        <label for="picture">
+         Аватар Пользователя:
+        </label>
+        <br/>
+        <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" />
+       </div>
      </div>
      <div class="modal-footer">
-      <button class="cancel" id="cancelEdit" type="button">
-       Отмена
-      </button>
-      <button class="accept" id="saveEdit" type="submit">
-       Сохранить
-      </button>
+      <button class="cancel" id="cancelEdit" type="button">Отмена</button>
+      <button class="accept" id="saveEdit" type="submit">Сохранить</button>
      </div>
+    </form>
     </div>
    </div>
    <!-- Скрипт для модального окна -->
-   <script src="{% static 'js/account_editForm.js' %}">
-   </script>
+   <script src="{% static 'js/account_editForm.js' %}"></script>
    <!-- Если у нас уже есть сервак -->
    <!-- <script>
 

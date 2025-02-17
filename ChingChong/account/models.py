@@ -22,7 +22,7 @@ class User(AbstractUser):
     food = models.CharField("Любимая Еда", max_length=50, blank=True)
     aboutMe = models.TextField("О Пользователе", max_length=256, blank=True, null=True)
     subscribed = models.BooleanField("Подписан", default=False)
-    profilePic = models.ImageField("Аватар Пользователя", null=True, blank=True, upload_to="avatar/", default="default.png")
+    profilePic = models.ImageField("Аватар Пользователя", null=True, blank=True, upload_to="avatar/", default="avatar/default.png")
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)  # Сначала сохраняем изображение

@@ -153,117 +153,117 @@
    <h1 class="Otz text-center">
     Все отзывы
    </h1>
-   <!-- Оформить как нормальный фильтр -->
-   <!-- <label class="ForLabel" for="rating">Оценка:</label> -->
-   <div class="text-center" style="margin: 5px 0 5px 0;">
-    <select class="WhyPadding" id="filter">
-     <option value="0">
-      Без Фильтра
-     </option>
-     {% for i in restaurants %}
+   <select class="WhyPadding justify-content-center d-flex" id="filter">
+    <option value="0">Без Фильтра</option>
+    {% for i in restaurants %}
     <option value="{{i.pk}}" {% if filter == i.pk %}selected{% endif %}>{{i.adress}}</option>
     {% endfor %}
     </select>
-   </div>
-   <script>
+    <script>
     document.getElementById("filter").addEventListener("change", function() {
-              if (this.value) {
-                let url = 'http://' + location.host + '/posts/all?page=1' + '&filter=' + this.value;
-                window.location.href = url; // переход по ссылке
-              }
-          });
-   </script>
+        if (this.value) {
+            let url = 'http://' + location.host + '/posts/all?page=1' + '&filter=' + this.value;
+            window.location.href = url; // переход по ссылке
+        }
+    });
+    </script>
    <div class="OurCont">
     {% comment %} <div class="row OnePostContent">
-     <div class="col OnePostBack">
+      <div class="col OnePostBack">
       {% if perms.posts.change_post %}
       <button class="ButtonSetting">
         <a href="{% url 'admin:posts_post_change' post.pk %}"><img class="SettingIcon" src="{% static 'img/Шестерёнка.png' %}"/></a>
       </button>
       {% endif %}
-      <h2 class="PersonName">
-       Имя пользователя
-      </h2>
-      <div class="row">
-       <div class="col-3 MyCity">
-        <p>
-         Петропавловск-Камчатский
-        </p>
-       </div>
-       <div class="col-3 rating">
-        <p>
-         Рейтинг
-        </p>
-       </div>
-      </div>
-      <p class="review">
-       Сам отзыв
-      </p>
-      <div class="row LikesAndDislikes">
-       <div class="col Likes">
-        <div class="row">
-         <div class="col-6 text-center">
-          <p class="LikesAmount p1">
-           Лайков:
-          </p>
-          <p class="amountL p1">
-            {{post.postinfo_set.all|count_rating:1}}
-          </p>
-         </div>
-         <div class="col-6 ForIcona">
-          {% if user.is_authenticated %}
-          <a class="btn Icona">
-           <img class="LikeIcon" data-pressed="False" src="{% static 'img/like.png' %}"/>
-          </a>
-          {% endif %}
-         </div>
+       <h2 class="PersonName">
+        Пользователь: {{post.sender.username}}
+       </h2>
+       <div class="row">
+        <div class="col-3 MyCity">
+         <p>
+          Город: {{post.restaurant.adress|default:"--------"}}
+         </p>
+        </div>
+        <div class="col-3 rating">
+         <p>
+          Рейтинг: {{post.get_rating_display}}
+         </p>
         </div>
        </div>
-       <div class="col Dislikes">
-        <div class="row">
-         <div class="col-6 text-center">
-          <p class="DislikesAmount p1">
-           Дизлайков:
-          </p>
-          <p class="amountD p1">
-            {{post.postinfo_set.all|count_rating:-1}}
-          </p>
+       <p class="review">
+        {{post.review}}
+       </p>
+       <div class="row LikesAndDislikes">
+        <div class="col-3 Likes">
+         <div class="row">
+          <div class="col-auto text-center">
+           <p class="LikesAmount p1">
+            Лайков:
+           </p>
+           <p class="amountL p1">
+            {{post.postinfo_set.all|count_rating:1}}
+           </p>
+          </div>
+          <div class="col-auto ForIcona">
+            {% if user.is_authenticated %}
+        <button class="Icona">
+            <a href="{% url 'api_post_like' post.pk %}"><img class="LikeIcon" src="{% static 'img/Лайк.png' %}"/></a>
+           </button>
+           <a class="btn Icona">
+            <img class="LikeIcon" data-pressed="{{post.postinfo_set.all|has_liked:user}}" data-post-id="{{post.pk}}" src="{% static 'img/like.png' %}"/>
+           </a>
+           {% endif %}
+          </div>
          </div>
-         <!-- <div class="col ForIcona"><button class="Icona"><img class="DislikeIcon" src="img/Дизлайк.png"></button></div> -->
-         <div class="col-6 ForIcona">
-          {% if user.is_authenticated %}
-          <a class="btn Icona">
-           <img class="DislikeIcon" data-pressed="True" src="{% static 'img/dislike.png' %}"/>
-          </a>
+        </div>
+        <div class="col-3 Dislikes">
+         <div class="row">
+          <div class="col-auto text-center">
+           <p class="DislikesAmount p1">
+            Дизлайков:
+           </p>
+           <p class="amountD p1">
+            {{post.postinfo_set.all|count_rating:-1}}
+           </p>
+          </div>
+          <div class="col-auto ForIcona">
+            {% if user.is_authenticated %}
+            <button class="Icona">
+            <a href="{% url 'api_post_dislike' post.pk %}"><img class="DislikeIcon" src="{% static 'img/Дизлайк.png' %}"/></a>
+           </button>
+           <a class="btn Icona">
+            <img class="DislikeIcon" data-pressed="{{post.postinfo_set.all|has_disliked:user}}" data-post-id="{{post.pk}}" src="{% static 'img/dislike.png' %}"/>
+           </a>
            {% endif %}
           </div>
          </div>
         </div>
        </div>
       </div>
-     </div>
-    </div> {% endcomment %}
+     </div>{% endcomment %}
    </div>
   </div>
+
+
   <nav aria-label="Page navigation example" class="justify-content-center d-flex">
    <ul class="pagination">
         <li class="page-item {% if not nav.back %}disabled{% endif %}">
         <a class="page-link" href="{% url 'all_posts'%}?page={{nav.back}}&filter={{filter}}">
-      Назад
-     </a>
-    </li>
+        Назад
+        </a>
+        </li>
         {% for i in nav.range %}
-    <li class="page-item">
+        <li class="page-item">
         <a class="page-link" href="{% url 'all_posts'%}?page={{i}}&filter={{filter}}">
         {{i}}
-     </a>
-    </li>
+        </a>
+        </li>
         {% endfor %}
         <li class="page-item {% if not nav.front %}disabled{% endif %}">
         <a class="page-link" href="{% url 'all_posts'%}?page={{nav.front}}&filter={{filter}}">
-      Вперед
-     </a>
-    </li>
+        Вперед
+        </a>
+        </li>
    </ul>
   </nav>
   <!-- Это важно, поскольку джанго использует статические файлы, и я не хочу писать скрипт здесь, поэтому надо передавать как-то путь к картинкам. -->

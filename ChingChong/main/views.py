@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from account.models import User
 from posts.models import *
+from account.forms import *
 import json
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
@@ -56,25 +57,24 @@ def unique_email(req):
 # Я бы лучше переделал бы это с формой, но у меня нет времени!!!
 def profile_update(req):
     if req.method == "POST":
-        data = json.loads(req.body)
-        print(data)
-        user = req.user  # Получаем текущего аутентифицированного пользователя
-        if 'birth' in data and data['birth'] != '':
-            user.birthday = datetime.strptime(data['birth'], '%Y-%m-%d').date()
-        if 'phone' in data:
-            user.number = data['phone']
-        if 'email' in data :
-            if not get_user_model().objects.filter(email=data['email']).exclude(email=user.email).exists():
-                user.email = data['email']
-            else:
-                return JsonResponse({'success': False, 'error': 'This email is already used'})
-        if 'food' in data:
-            user.food = data['food']
-        if 'about' in data:
-            user.aboutMe = data['about']
+        user = req.user  # Текущий пользователь
 
-            user.save()  # Сохраняем обновленного пользователя
+        # Обновление текстовых полей (если не пустые)
+        if req.POST.get("number"):
+            user.number = req.POST["number"]
+        if req.POST.get("city"):
+            city = Cities.objects.get(city=req.POST["city"])
+            user.city = city
+        if req.POST.get("aboutMe"):
+            user.aboutMe = req.POST["aboutMe"]
+        if req.POST.get("food"):
+            user.food = req.POST["food"]
+        if req.POST.get("birthday"):
+            user.birthday = datetime.strptime(req.POST["birthday"], "%Y-%m-%d").date()
 
-            return JsonResponse({'success': True})
-        else:
-            return JsonResponse({'success': False, 'error': 'Something went wrong'})
+        # Обновление аватара
+        if "avatar" in req.FILES:
+            user.profilePic = req.FILES["avatar"]
+
+        user.save()  # Сохранение изменений
+        return redirect('profile')

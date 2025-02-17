@@ -7,16 +7,16 @@ from main.models import Cities
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(max_length=60, required=True,)
     # birthday = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}, format="DD.MM.YYYY"))
-    birthday = forms.DateField( widget=forms.DateInput(format="DD.MM.YYYY") )
+    birthday = forms.DateField( widget=forms.DateInput(format="DD.MM.YYYY"), required=False )
     number = forms.CharField(max_length=11, required=False)
     city = forms.CharField(max_length=50)
     food = forms.CharField(max_length=50, required=False)
-    gender = forms.CharField(max_length=10, initial='D')
+    gender = forms.CharField(max_length=10, initial='D', required=False)
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():
-            raise ValidationError('A user with that email already exists.')
+            raise ValidationError('Пользователь с таким email уже существует.')
         return email
     
     def clean_city(self):
@@ -25,7 +25,7 @@ class UserRegisterForm(UserCreationForm):
         if cityObject:
             return cityObject[0]
         
-        raise ValidationError('Please use a correct address')
+        raise ValidationError('Пожалуйста используйте корректное место проживания')
         
 
     def save(self, commit = ...):

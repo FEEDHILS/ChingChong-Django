@@ -28,7 +28,12 @@ function validateCity() {
     const inputValue = textInput.value.trim(); // Получаем введённое значение
 
     // Проверяем, есть ли введённый город в списке
-    const isValid = options.some(option => option.value === inputValue);
+    let isValid = options.some(option => option.value === inputValue);
+    if (inputValue == '') {
+        isValid = true;
+        // cityError.style.display = 'none'; // Скрываем ошибку
+        // console.log("WAK");
+    }
 
     if (!isValid && inputValue !== '') {
         cityError.style.display = 'block'; // Показываем ошибку

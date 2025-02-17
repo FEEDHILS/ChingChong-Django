@@ -75,6 +75,15 @@ body {
     }
 }
 
+@media (max-width: 540px) {
+    #password {
+        width: calc(100vw - 170px) !important;
+    }
+
+    #ConfirmPassword {
+        width: calc(100vw - 170px) !important;
+    }
+}
 
 
 
@@ -213,6 +222,24 @@ body {
         padding: 0 !important;
     }
 
+    #password {
+        width: 80%;
+    }
+    
+    #ConfirmPassword {
+        width: 80%;
+    }
+
+    .password-container {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .password-container2 {
+        display: flex;
+        justify-content: space-around;
+    }
+
 }
 
 .MenuTable a{
@@ -321,4 +348,138 @@ hr {
 
 .hidden {
     display: none;
+}
+
+.password-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.password-container2 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.LeftPadding {
+    padding-left: 0 !important;
+}
+
+
+
+
+/* ошибка */
+#message3 {
+    position: absolute; /* Абсолютное позиционирование */
+    top: 100%; /* Размещаем под полем ввода */
+    left: 0; /* Выравниваем по левому краю */
+    z-index: 10; /* Убедимся, что сообщение поверх других элементов */
+    background: white; /* Фон сообщения */
+    padding: 5px; /* Отступы внутри сообщения */
+    border: 1px solid transparent; /* Рамка (прозрачная по умолчанию) */
+    border-radius: 4px; /* Скруглённые углы */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень для выделения */
+    margin-top: 5px; /* Отступ от поля ввода */
+    display: none; /* По умолчанию скрыто */
+}
+
+#message3.error {
+    border-color: red; /* Красная рамка для ошибки */
+    color: red; /* Красный текст для ошибки */
+
+}
+
+#message3.success {
+    border-color: green; /* Зелёная рамка для успеха */
+    color: green; /* Зелёный текст для успеха */
+
+}
+
+#message2 {
+    position: absolute; /* Абсолютное позиционирование */
+    top: 100%; /* Размещаем под полем ввода */
+    left: 0; /* Выравниваем по левому краю */
+    z-index: 10; /* Убедимся, что сообщение поверх других элементов */
+    background: white; /* Фон сообщения */
+    padding: 5px; /* Отступы внутри сообщения */
+    border: 1px solid transparent; /* Рамка (прозрачная по умолчанию) */
+    border-radius: 4px; /* Скруглённые углы */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень для выделения */
+    margin-top: 5px; /* Отступ от поля ввода */
+    display: none; /* По умолчанию скрыто */
+}
+
+#message2.error {
+    border-color: red; /* Красная рамка для ошибки */
+    color: red; /* Красный текст для ошибки */
+
+}
+
+#message2.success {
+    border-color: green; /* Зелёная рамка для успеха */
+    color: green; /* Зелёный текст для успеха */
+
+}
+
+#message {
+    position: absolute; /* Абсолютное позиционирование */
+    top: 100%; /* Размещаем под полем ввода */
+    left: 0; /* Выравниваем по левому краю */
+    z-index: 10; /* Убедимся, что сообщение поверх других элементов */
+    background: white; /* Фон сообщения */
+    padding: 5px; /* Отступы внутри сообщения */
+    border: 1px solid transparent; /* Рамка (прозрачная по умолчанию) */
+    border-radius: 4px; /* Скруглённые углы */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень для выделения */
+    margin-top: 5px; /* Отступ от поля ввода */
+    display: none; /* По умолчанию скрыто */
+}
+
+#message.error {
+    border-color: red; /* Красная рамка для ошибки */
+    color: red; /* Красный текст для ошибки */
+
+}
+
+#message.success {
+    border-color: green; /* Зелёная рамка для успеха */
+    color: green; /* Зелёный текст для успеха */
+
+}
+
+#password-error {
+    position: absolute; /* Абсолютное позиционирование */
+    top: 100%; /* Размещаем под полем ввода */
+    left: 0; /* Выравниваем по левому краю */
+    z-index: 10; /* Убедимся, что сообщение поверх других элементов */
+    background: white; /* Фон сообщения */
+    padding: 5px; /* Отступы внутри сообщения */
+    border: 1px solid transparent; /* Рамка (прозрачная по умолчанию) */
+    border-radius: 4px; /* Скруглённые углы */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень для выделения */
+    margin-top: 5px; /* Отступ от поля ввода */
+    display: none; /* По умолчанию скрыто */
+}
+
+.error-message {
+    border-color: red !important;  /* Красная рамка для ошибки */
+    color: red; /* Красный текст для ошибки */
+}
+
+#password-error2 {
+    position: absolute; /* Абсолютное позиционирование */
+    top: 100%; /* Размещаем под полем ввода */
+    left: 0; /* Выравниваем по левому краю */
+    z-index: 10; /* Убедимся, что сообщение поверх других элементов */
+    background: white; /* Фон сообщения */
+    padding: 5px; /* Отступы внутри сообщения */
+    border: 1px solid transparent; /* Рамка (прозрачная по умолчанию) */
+    border-radius: 4px; /* Скруглённые углы */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень для выделения */
+    margin-top: 5px; /* Отступ от поля ввода */
+    display: none; /* По умолчанию скрыто */
+}
+
+.error-message2 {
+    border-color: red !important;  /* Красная рамка для ошибки */
+    color: red; /* Красный текст для ошибки */
 }

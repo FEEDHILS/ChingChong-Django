@@ -57,14 +57,12 @@ body {
 }
 
 .Icona {
-    padding: 5px 5px 0px 5px;
-    border-radius: 50%;
+    /* padding: 5px 5px 0px 5px;
+    border-radius: 50%; */
     width: 11vh;
 }
 
-.ForIcona {
-    text-align: center;
-}
+
 
 .SettingIcon {
     width: 8vh;
@@ -82,10 +80,19 @@ body {
     margin-bottom: 0;
 }
 
+.col-6 {
+    padding: 0 6px 0 6px !important;
+}
+
 @media (max-width: 514px) {
     
     .col-6 {
         width: 100% !important;
+        
+    }
+
+    .ForIcona {
+        text-align: center;
     }
 
     .LikeIcon{
@@ -96,8 +103,12 @@ body {
         width: 5vh;
     }
 
-    .Icona {
-        width: 8vh;
+    .btn.Icona {
+        text-align: center !important;
+    }
+
+    .rating {
+        text-align: center;
     }
 
 }
@@ -411,3 +422,4 @@ hr {
 .hidden {
     display: none;
 }
+

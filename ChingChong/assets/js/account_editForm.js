@@ -15,28 +15,28 @@ cancelEdit.addEventListener('click', () => {
 });
 
 // Сохранение данных (отправка на сервер)
-saveEdit.addEventListener('click', (e) => {
-    e.preventDefault();
-    const form = document.getElementById('editProfileForm');
-    const formData = new FormData(form);
+// saveEdit.addEventListener('click', (e) => {
+//     // e.preventDefault();
+//     // const form = document.getElementById('editProfileForm');
+//     // const formData = new FormData(form);
 
-    // Пример отправки данных на сервер (заменить URL на свой)
-    fetch('/api/update-profile', {
-        method: 'POST',
-        body: JSON.stringify(Object.fromEntries(formData)),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Профиль обновлён');
-            location.reload(); // Обновить страницу
-        } else {
-            alert('Ошибка при обновлении профиля');
-        }
-    })
-    .catch(error => console.error('Ошибка:', error));
-});
+//     // // Пример отправки данных на сервер (заменить URL на свой)
+//     // fetch('/api/update_profile', {
+//     //     method: 'POST',
+//     //     body: JSON.stringify(Object.fromEntries(formData)),
+//     //     headers: {
+//     //         'Content-Type': 'application/json'
+//     //     }
+//     // })
+//     // .then(response => response.json())
+//     // .then(data => {
+//     //     if (data.success) {
+//     //         alert('Профиль обновлён');
+//     //         location.reload(); // Обновить страницу
+//     //     } else {
+//     //         alert('Ошибка при обновлении профиля');
+//     //     }
+//     // })
+//     // .catch(error => console.error('Ошибка:', error));
+// });
 

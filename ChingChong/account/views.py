@@ -34,17 +34,9 @@ def register(req):
     if req.method == 'POST':
         genderM = req.POST.get('genderM')
         genderF = req.POST.get('genderF')
+        print(req.POST.get('gender'))
 
-        gender = 'D'
-        if genderM == 'on':
-            gender = 'M'
-        elif genderF == 'on':
-            gender = 'F'
-
-        data = req.POST.copy()
-        data['gender'] = gender  
-
-        RegisterForm = UserRegisterForm(data=data)
+        RegisterForm = UserRegisterForm(data=req.POST)
         if RegisterForm.is_valid():
             user = RegisterForm.save()
             login(req, user)
@@ -98,6 +90,7 @@ def profile(req, name=None):
     if name is None:
         if req.user.is_authenticated:
             user = req.user
+            
         else:
             raise PermissionDenied("You are not authenticated to view your profile")
     else:

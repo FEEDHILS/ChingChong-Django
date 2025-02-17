@@ -67,7 +67,8 @@ body {
 }
 
 .SettingIcon {
-    width: 8vh;
+    height: 49.275px;
+    width: 49.275px;
 }
 
 .LeftPadding {
@@ -79,7 +80,6 @@ body {
 }
 
 .ButtonSetting {
-    width: 11vh;
     border-radius: 50%;
 }
 
@@ -111,11 +111,8 @@ body {
     margin-bottom: 0;
 }
 
+
 @media (max-width: 514px) {
-    
-    .col-6 {
-        width: 100% !important;
-    }
 
     .LikeIcon{
         width: 5vh;
@@ -129,6 +126,9 @@ body {
         width: 8vh;
     }
 
+    .btn.Icona {
+        text-align: center !important;
+    }
 }
 
 .dropdown-toggle::after {
@@ -349,6 +349,9 @@ body {
         padding: 0 !important;
     }
 
+    .col-6 {
+        width: 100% !important;
+    }
 }
 
 .MenuTable a{
@@ -361,7 +364,8 @@ body {
 }
 
 .GoToMain {
-    inline-size: 6vh;
+    height: 49.275px;
+    width: 49.275px;
     border: 1px solid;
     border-color: black;
     border-radius: 50%;
