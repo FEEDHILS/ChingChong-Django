@@ -19,7 +19,7 @@ class CustomUserAdmin(UserAdmin):
     fieldsets[1] = (
         'Personal Info',
         {
-            'fields': ('gender', 'number', 'city', 'food', 'birthday',),  # Перевернули тут все вверх-дном!!
+            'fields': ('gender', 'number', 'city', 'food', 'birthday', 'aboutMe', 'profilePic'),  # Перевернули тут все вверх-дном!!
         },
     )
 

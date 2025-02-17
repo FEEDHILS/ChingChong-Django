@@ -30,9 +30,11 @@
       <a class="GoToPosts" href="{% url 'all_posts' %}">
        Посты
       </a>
+      {% if user.is_authenticated %}
       <a href="{% url 'my_posts' %}">
        Мои отзывы
       </a>
+      {% endif %}
      </div>
     </div>
     <div class="dropdown Knopka">
@@ -57,12 +59,14 @@
         Посты
        </a>
       </li>
+      {% if user.is_authenticated %}
       <hr/>
       <li>
        <a class="GoToSelfPosts" href="{% url 'my_posts' %}">
         Мои отзывы
        </a>
       </li>
+      {% endif %}
      </ul>
     </div>
    </div>
@@ -79,7 +83,12 @@
     <div class="container FirstToSee">
      <div class="row text-center First">
       <div class="col-6 PersonIcon">
-       <img id="Iconka" src="{% static 'img/ИконкаАватара.png' %}"/>
+       {% comment %} <img id="Iconka" src="{% static 'img/ИконкаАватара.png' %}"/> {% endcomment %}
+       {% if current.profilePic %}
+       <img alt="Аватар" id="Iconka"  src="{{current.profilePic.url}}" />
+       {% else %}
+       <img alt="Аватар" id="Iconka" src="{% static 'img/ИконкаАватара.png' %}" />
+       {% endif %}
       </div>
       <div class="col-6 PersonInfo1">
        <h2 class="Nickname">
@@ -123,12 +132,12 @@
        <div class="row NumbersOf">
         <div class="col-6 Posts">
          <h6 class="NumbersOfPosts">
-          Кол-во постов пользователя: 
+          Кол-во постов пользователя: {{postAmount}}
          </h6>
         </div>
         <div class="col-6 Likes">
          <h6 class="NumbersOfLikes">
-          Кол-во лайков пользователя:
+          Кол-во лайков пользователя: {{postLikes}}
          </h6>
         </div>
        </div>

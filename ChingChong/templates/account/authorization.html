@@ -145,6 +145,11 @@
    <h2>
     Авторизация
    </h2>
+   {% if error %}
+   <div class="alert alert-danger" role="alert">
+    Неверный логин и/или пароль!
+  </div>
+  {% endif %}
    <div class="form-group">
     <label for="Nickname">
      Ваш логин
@@ -161,7 +166,7 @@
     Отправить
    </button>
   </form>
-  <script>
+  {% comment %} <script>
    document.getElementById('subscription-form').addEventListener('submit', function(event) {
                 event.preventDefault(); // Предотвращаем стандартное поведение формы
                 const name = document.getElementById('name').value.trim();
@@ -179,7 +184,7 @@
                     errorMessage.style.display = 'block';
                 }
             });
-  </script>
+  </script> {% endcomment %}
  </body>
  <footer>
   © Copyright 1995-2024 Чинг Чонг.  Все права защищены...

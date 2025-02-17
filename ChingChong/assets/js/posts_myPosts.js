@@ -106,17 +106,19 @@ function postsUpdate() {
     });
 }
 
-function main() {
-    // Обновляем/Добавляем посты
-    let url = 'http://' + location.host + '/posts/api/getPosts?page=' + window.page + '&filter=' + window.filter;
-    fetch(url, { method: 'GET' })
-    .then(response => response.json())
-    .then(data => {
-        console.log("Update");
-        document.querySelector(".OurCont").innerHTML = data.html;
-        postsUpdate();
-    });
+postsUpdate()
 
-}
-main();
-setInterval(main, 10000);
+// function main() {
+//     // Обновляем/Добавляем посты
+//     let url = 'http://' + location.host + '/posts/api/getPosts?page=' + window.page + '&filter=' + window.filter;
+//     fetch(url, { method: 'GET' })
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log("Update");
+//         document.querySelector(".OurCont").innerHTML = data.html;
+//         postsUpdate();
+//     });
+
+// }
+// main();
+// setInterval(main, 10000);

@@ -8,6 +8,21 @@ from account.models import User
 from posts.models import *
 import json
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def sub(req):
+    if req.method == "GET":
+        return render(req, "main/Subscription.html")
+    
+    if req.method == "POST":
+        user = User.objects.get(pk=req.user.pk)
+        if req.user.number == "":
+            user.number = req.POST.get("number", "")
+        
+        user.subscribed = not user.subscribed
+        user.save()
+        return JsonResponse({"success": True})
 
 @csrf_exempt
 def search_city(req):
@@ -44,7 +59,7 @@ def profile_update(req):
         data = json.loads(req.body)
         print(data)
         user = req.user  # Получаем текущего аутентифицированного пользователя
-        if 'birth' in data and data['birth'] is not '':
+        if 'birth' in data and data['birth'] != '':
             user.birthday = datetime.strptime(data['birth'], '%Y-%m-%d').date()
         if 'phone' in data:
             user.number = data['phone']

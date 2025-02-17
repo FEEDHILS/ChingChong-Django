@@ -153,6 +153,20 @@
    <h1 class="Otz text-center">
     Все отзывы
    </h1>
+   <select class="WhyPadding justify-content-center d-flex" id="filter">
+    <option value="0">Без Фильтра</option>
+    {% for i in restaurants %}
+    <option value="{{i.pk}}" {% if filter == i.pk %}selected{% endif %}>{{i.adress}}</option>
+    {% endfor %}
+    </select>
+    <script>
+    document.getElementById("filter").addEventListener("change", function() {
+        if (this.value) {
+            let url = 'http://' + location.host + '/posts/all?page=1' + '&filter=' + this.value;
+            window.location.href = url; // переход по ссылке
+        }
+    });
+    </script>
    <div class="OurCont">
     {% comment %} <div class="row OnePostContent">
      <div class="col OnePostBack">
@@ -222,31 +236,23 @@
 
   <nav aria-label="Page navigation example" class="justify-content-center d-flex">
    <ul class="pagination">
-    <li class="page-item">
-     <a class="page-link" href="#">
-      Назад
-     </a>
-    </li>
-    <li class="page-item">
-     <a class="page-link" href="#">
-      1
-     </a>
-    </li>
-    <li class="page-item">
-     <a class="page-link" href="#">
-      2
-     </a>
-    </li>
-    <li class="page-item">
-     <a class="page-link" href="#">
-      3
-     </a>
-    </li>
-    <li class="page-item">
-     <a class="page-link" href="#">
-      Вперед
-     </a>
-    </li>
+        <li class="page-item {% if not nav.back %}disabled{% endif %}">
+        <a class="page-link" href="{% url 'all_posts'%}?page={{nav.back}}&filter={{filter}}">
+        Назад
+        </a>
+        </li>
+        {% for i in nav.range %}
+        <li class="page-item">
+        <a class="page-link" href="{% url 'all_posts'%}?page={{i}}&filter={{filter}}">
+        {{i}}
+        </a>
+        </li>
+        {% endfor %}
+        <li class="page-item {% if not nav.front %}disabled{% endif %}">
+        <a class="page-link" href="{% url 'all_posts'%}?page={{nav.front}}&filter={{filter}}">
+        Вперед
+        </a>
+        </li>
    </ul>
   </nav>
   <!-- Это важно, поскольку джанго использует статические файлы, и я не хочу писать скрипт здесь, поэтому надо передавать как-то путь к картинкам. -->
@@ -259,8 +265,10 @@
           normal: "{% static 'img/dislike.png' %}",
           pressed: "{% static 'img/dislike_pressed.png' %}",
       };
+      {% comment %} Всякие штуки из django в js {% endcomment %}
+    window.page = {{page}};
+    window.filter = {{filter}};
   </script>
-  <script src="{% static 'js/posts_allPostsStuff.js' %}">
-  </script>
+  <script src="{% static 'js/posts_allPostsStuff.js' %}"></script>
  </body>
 </html>

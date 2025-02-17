@@ -3,22 +3,22 @@ from django.db import models
 # Таблица с городами РФ
 class Cities(models.Model):
     city = models.CharField("Город", max_length=256, blank=True)
-    adress = models.CharField("Адресс", max_length=256, blank=True)
+    adress = models.CharField("Точный Адресс", max_length=256, blank=True)
 
     class Meta:
-        verbose_name = "city"
-        verbose_name_plural = "Cities"
+        verbose_name = "Город"
+        verbose_name_plural = "Города"
 
     def __str__(self):
         return self.adress
     
 class Restaurant(models.Model):
-    adress = models.CharField("Адресс", max_length=256, blank=True, null=True)
-    city = models.ForeignKey(Cities, on_delete=models.CASCADE, )
+    adress = models.CharField("Название", max_length=256, blank=True, null=True)
+    city = models.ForeignKey(Cities, on_delete=models.CASCADE, verbose_name="Город")
 
     class Meta:
-        verbose_name = "restaurant"
-        verbose_name_plural = "Restaurants"
+        verbose_name = "Ресторан"
+        verbose_name_plural = "Рестораны"
 
     def __str__(self):
         return self.adress

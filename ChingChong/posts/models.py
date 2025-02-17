@@ -5,17 +5,18 @@ from main.models import Restaurant
 # Create your models here.
 class Post(models.Model):
     RATINGTYPE = [ (1, "1 Звезда"), (2,"2 Звезды"), (3, "3 Звезды"), (4, "4 Звезды"), (5, "5 Звезд") ]
-    sender = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.SET_NULL, blank=True, null=True)
+    sender = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Отправитель")
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Ресторан")
     rating = models.IntegerField("Рейтинг", choices=RATINGTYPE, default='5', blank=False)
     review = models.TextField("Отзыв", blank=False, max_length=1024)
-    likes = models.IntegerField("Лайки", default=0)
-    dislikes = models.IntegerField("Дизлайки", default=0)
+    # likes = models.IntegerField("Лайки", default=0)
+    # dislikes = models.IntegerField("Дизлайки", default=0)
 
     publish = models.BooleanField("Опубликован", default=False)
 
-    # def __str__(self):
-    #     return f"Пост ({self.pk})"
+    class Meta:
+        verbose_name = "Пост"
+        verbose_name_plural = "Посты"
     
 
 class PostInfo(models.Model):

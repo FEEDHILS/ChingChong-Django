@@ -29,6 +29,7 @@ header {
     align-items: center;
     justify-content: space-between;
     background-color: rgb(32, 32, 32);
+    height: 8vh;
 }
 
 .BeforeKnopka{
